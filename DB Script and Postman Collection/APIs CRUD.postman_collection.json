@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "ea4a9a11-512c-40b9-946a-38441e071aaf",
+		"name": "APIs CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getTeams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getTeams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getTeams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTeams/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getTeams/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getTeams",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTeam",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"teamName\":\"D\",\"gameName\":\"Game D\",\"emailId\":\"d@game.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/addTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"addTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTeam/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"teamName\": \"D-updated\",\r\n    \"gameName\": \"Game D\",\r\n    \"emailId\": \"d@game.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/updateTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"updateTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTeam/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/deleteTeam/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"deleteTeam",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "keepFirst/{x}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/keepFirst/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"keepFirst",
+						"22"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -8,25 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="team")
+@Table(name = "team")
 public class Team {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
+	private Long id;
+
 	@Column(name = "team_name")
 	private String teamName;
-	
+
 	@Column(name = "game_name")
 	private String gameName;
-	
+
 	@Column(name = "email_id")
 	private String emailId;
-	
+
 	public Team() {
-	}	
-	
+	}
+
 	public Team(String teamName, String gameName, String emailId) {
 		super();
 		this.teamName = teamName;
@@ -37,31 +37,31 @@ public class Team {
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getTeamName() {
 		return teamName;
 	}
-	
+
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-	
+
 	public String getGameName() {
 		return gameName;
 	}
-	
+
 	public void setGameName(String gameName) {
 		this.gameName = gameName;
 	}
-	
+
 	public String getemailId() {
 		return emailId;
 	}
-	
+
 	public void setemailId(String emailId) {
 		this.emailId = emailId;
 	}
@@ -70,8 +70,5 @@ public class Team {
 	public String toString() {
 		return "Team [id=" + id + ", teamName=" + teamName + ", gameName=" + gameName + ", emailId=" + emailId + "]";
 	}
-	
-	
+
 }
-
-
