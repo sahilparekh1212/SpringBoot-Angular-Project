@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ public class TeamController {
 	@Autowired
 	private TeamRepository teamRepository;
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("getTeams")
 	public List<Team> getTeams() {
 		List<Team> res = new ArrayList<Team>();
@@ -37,6 +39,7 @@ public class TeamController {
 		return res;
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("getTeams/{id}")
 	public ResponseEntity<Optional<Team>> getTeams(@PathVariable Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
@@ -48,6 +51,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("addTeam")
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
 		Team team = new Team();
@@ -63,6 +67,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("updateTeam/{id}")
 	public ResponseEntity<Optional<Team>> updateTeam(@PathVariable Long id,@RequestBody Team team) {
 		Optional<Team> response = Optional.ofNullable(new Team());
@@ -83,6 +88,7 @@ public class TeamController {
 		return ResponseEntity.ok(response);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("deleteTeam/{id}")
 	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
@@ -99,6 +105,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("keepFirst/{x}")
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable Long x) {
 		List<Team> allTeams = new ArrayList<Team>();
