@@ -1,2 +1,11 @@
-<app-home></app-home>
-<!-- <router-outlet></router-outlet> -->
+<div class="bg-dark text-light" style="height: 100vh;">
+    <div class="container ">
+        <nav>
+            <ul class="d-flex">
+              <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+              <li><a routerLink="/addTeam" routerLinkActive="active" ariaCurrentWhenActive="page">Add Team</a></li>
+            </ul>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>

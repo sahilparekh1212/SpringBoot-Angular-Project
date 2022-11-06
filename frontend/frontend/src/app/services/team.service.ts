@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Team } from '../team';
-import { TeamWithoutId } from '../team-without-id';
+import { Team } from '../utility/class/team/team';
+import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../services/team.service';
-import { Team } from '../team';
-import { TeamWithoutId } from '../team-without-id';
+import { Team } from '../utility/class/team/team';
+import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id';
 
 @Component({
   selector: 'app-home',

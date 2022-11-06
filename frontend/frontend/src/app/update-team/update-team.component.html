@@ -1,0 +1,27 @@
+<h4>Update Team</h4>
+
+<form (ngSubmit)="onSubmit()">
+    
+    <div>
+        <label class="m-2" for="teamId">teamId</label>
+        <input class="col-6 bg-dark text-light" type="text" name="teamId" [(ngModel)]="team.id" disabled>
+    </div>
+
+    <div>
+        <label class="m-2" for="teamName">teamName</label>
+        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="team.teamName">
+    </div>
+
+    <div>
+        <label class="m-2" for="gameName">gameName</label>
+        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="team.gameName">
+    </div>
+
+    <div>
+        <label class="m-2" for="emailId">emailId</label>
+        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="team.emailId">
+    </div>
+
+    <button type="submit" class="m-2 bg-dark text-info rounded">Submit</button>
+
+</form>
