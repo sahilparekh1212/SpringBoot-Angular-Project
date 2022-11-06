@@ -1,7 +1,36 @@
-<button (click)="getTeams()">getTeams</button>
-<button (click)="getTeam()">getTeam/id</button>
-<button (click)="addTeam()">addTeam</button>
-<button (click)="updateTeam()">updateTeam</button>
-<button (click)="deleteTeam()">deleteTeam/id</button>
-<button (click)="keepFirst()">keepFirst</button>
-<div >{{response| json}}</div>
+<div class="bg-dark text-light" style="height:100vh;">
+    <div class="container">
+        <div>
+            <button class="bg-dark text-success rounded ml-0" (click)="addTeam()">addTeam</button>
+            <button class="bg-dark text-info rounded mx-2" (click)="keepFirst()">keepFirst</button>
+        </div>
+        <div>
+            <div class="row justify-content-around">
+                <table class="col-12">
+                    <thead>
+                        <tr class="border-bottom">
+                            <td class="col-1">Id</td>
+                            <td class="col-2">Team Name</td>
+                            <td class="col-2">Game Name</td>
+                            <td class="col-3">Email Id</td>
+                            <td class="col-4">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="teams">
+                        <tr *ngFor="let team of teams">
+                            <td class="col-1" [innerText]="team.id"></td>
+                            <td class="col-2" [innerText]="team.teamName"></td>
+                            <td class="col-2" [innerText]="team.gameName"></td>
+                            <td class="col-3" [innerText]="team.emailId"></td>
+                            <td class="col-4">
+                                <button class="btn text-primary p-1 mr-2" (click)="updateTeam(team)">Update</button>
+                                <button class="btn text-danger p-1 mr-2" (click)="deleteTeam(team.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

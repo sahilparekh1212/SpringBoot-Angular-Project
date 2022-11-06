@@ -9,37 +9,37 @@ import { TeamWithoutId } from '../team-without-id';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  response: any;
+  teams: Team[] = [];
+  showDiv=false;
+
   constructor(private teamService: TeamService) { }
 
   ngOnInit(): void {
+    this.getTeams();
   }
 
   getTeams() {
     this.teamService.getTeams().subscribe((res) => {
       if (res) {
-        this.response = res;
-        console.log(res);
+        this.teams = res;
       } else {
         console.log('Something went wrong -> getTeam() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> getTeam()');
+        console.log('Error Occured -> getTeam() -> error=', error);
       });
   }
 
-  getTeam() {
-    this.teamService.getTeam(20).subscribe((res) => {
+  getTeam(id: number) {
+    this.teamService.getTeam(id).subscribe((res) => {
       if (res) {
-        this.response = res;
-        console.log(res);
       } else {
         console.log('Something went wrong -> getTeam() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> getTeam()');
+        console.log('Error Occured -> getTeam() -> error=', error);
       });
   }
 
@@ -51,59 +51,65 @@ export class HomeComponent implements OnInit {
 
     this.teamService.addTeam(teamWithoutId).subscribe((res) => {
       if (res) {
-        this.response = res;
-        console.log(res);
+        this.teams.push(res);
+        this.teams.sort();
       } else {
         console.log('Something went wrong -> addTeam() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> addTeam()');
+        console.log('Error Occured -> addTeam() -> error=', error);
       });
   }
 
-  updateTeam() {
-    let input: Team = this.response;
-    input.emailId = 'updated@updated.com';
-    this.teamService.updateTeam(input).subscribe((res) => {
+  updateTeam(team: Team) {
+    team.emailId = 'new' +  Math.floor(Math.random()*100).toString() +'@updated.com';
+    this.teamService.updateTeam(team).subscribe((res) => {
       if (res) {
-        this.response = res;
-        console.log(res);
       } else {
         console.log('Something went wrong -> updateTeam() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> updateTeam()');
+        console.log('Error Occured -> updateTeam() -> error=', error);
       });
   }
 
-  deleteTeam() {
-    this.teamService.deleteTeam(this.response.id).subscribe((res) => {
+  deleteTeam(id: number) {
+    this.teamService.deleteTeam(id).subscribe((res) => {
       if (res) {
-        this.response = res;
-        console.log(res);
+        this.teams = this.teams.filter((team) => {
+          return team.id != id;
+        });
       } else {
         console.log('Something went wrong -> deleteTeam() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> deleteTeam()');
+        console.log('Error Occured -> deleteTeam() -> error=', error);
       });
   }
 
   keepFirst() {
-    let teamsToBeKept: number= 1;
-    this.teamService.keepFirst(teamsToBeKept).subscribe((res) => {
+    let teamsToBeKept: number = 1;
+    this.teamService.keepFirst(teamsToBeKept).subscribe((res:Team[]) => {
       if (res) {
-        this.response = res;
-        console.log(res);
+        let idArr: number[] = [];
+
+        res.forEach((res)=>{
+          idArr.push(res.id);
+        });
+
+        this.teams = this.teams.filter((team)=>{
+          return !idArr.includes(team.id);
+        });
+
       } else {
         console.log('Something went wrong -> keepFirstX() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> keepFirstX()');
+        console.log('Error Occured -> keepFirstX() -> error=', error);
       });
   }
 
