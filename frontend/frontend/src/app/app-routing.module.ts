@@ -6,10 +6,11 @@ import { HomeComponent } from './home/home.component';
 import { UpdateTeamComponent } from './update-team/update-team.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path:'addTeam', component: AddTeamComponent},
-  {path:'updateTeam', component: UpdateTeamComponent},
-  {path: '**', component: AppComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'addTeam', component: AddTeamComponent },
+  { path: 'updateTeam/:id', component: UpdateTeamComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', component: AppComponent }
 ];
 
 @NgModule({

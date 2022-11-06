@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TeamService } from '../services/team.service';
 import { Team } from '../utility/class/team/team';
 
@@ -10,27 +11,41 @@ import { Team } from '../utility/class/team/team';
 export class UpdateTeamComponent implements OnInit {
 
   team: Team = new Team();
+  showMessage: boolean = false;
+  isTeamUpdated: boolean = false;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.team.id=1;
-    this.team.teamName='ab';
-    this.team.gameName='cd';
-    this.team.emailId='e@f.com'
+    this.getTeam(this.activatedRoute.snapshot.params['id']);
   }
 
   onSubmit() {
     this.updateTeam(this.team);
   }
 
+  getTeam(id: number) {
+    this.teamService.getTeam(id).subscribe((res) => {
+      if (res) {
+        this.team = res;
+      } else {
+        console.log('Something went wrong -> getTeam() -> res=', res);
+      }
+    },
+      (error) => {
+        console.log('Error Occured -> getTeam() -> error=', error);
+      });
+  }
+
   updateTeam(team: Team) {
-    // team.emailId = 'new' + Math.floor(Math.random() * 100).toString() + '@updated.com';
     this.teamService.updateTeam(team).subscribe((res) => {
       if (res) {
+        this.team = res;
+        this.isTeamUpdated = true;
       } else {
         console.log('Something went wrong -> updateTeam() -> res=', res);
       }
+      this.showMessage = true;
     },
       (error) => {
         console.log('Error Occured -> updateTeam() -> error=', error);

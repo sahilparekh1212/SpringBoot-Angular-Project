@@ -10,6 +10,9 @@ import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id'
 export class AddTeamComponent implements OnInit {
 
   teamDetails: TeamWithoutId = new TeamWithoutId();
+  showMessage: boolean = false;
+  isTeamAdded: boolean = false;
+  id: number | undefined;
 
   constructor(private teamService: TeamService) { }
 
@@ -26,10 +29,12 @@ export class AddTeamComponent implements OnInit {
   addTeam(teamDetails: TeamWithoutId) {
     this.teamService.addTeam(teamDetails).subscribe((res) => {
       if (res) {
-
+        this.id = res.id;
+        this.isTeamAdded = true;
       } else {
         console.log('Something went wrong -> addTeam() -> res=', res);
       }
+      this.showMessage = true;
     },
       (error) => {
         console.log('Error Occured -> addTeam() -> error=', error);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../services/team.service';
 import { Team } from '../utility/class/team/team';
 import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,9 @@ import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id'
 })
 export class HomeComponent implements OnInit {
   teams: Team[] = [];
-  showDiv=false;
+  showDiv = false;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTeams();
@@ -23,56 +24,16 @@ export class HomeComponent implements OnInit {
       if (res) {
         this.teams = res;
       } else {
-        console.log('Something went wrong -> getTeam() -> res=', res);
+        console.log('Something went wrong -> getTeams() -> res=', res);
       }
     },
       (error) => {
-        console.log('Error Occured -> getTeam() -> error=', error);
+        console.log('Error Occured -> getTeams() -> error=', error);
       });
   }
 
-  getTeam(id: number) {
-    this.teamService.getTeam(id).subscribe((res) => {
-      if (res) {
-      } else {
-        console.log('Something went wrong -> getTeam() -> res=', res);
-      }
-    },
-      (error) => {
-        console.log('Error Occured -> getTeam() -> error=', error);
-      });
-  }
-
-  addTeam() {
-    let teamWithoutId: TeamWithoutId = new TeamWithoutId();
-    teamWithoutId.emailId = 'a@a.com';
-    teamWithoutId.gameName = 'game-name';
-    teamWithoutId.teamName = 'team-name';
-
-    this.teamService.addTeam(teamWithoutId).subscribe((res) => {
-      if (res) {
-        this.teams.push(res);
-        this.teams.sort();
-      } else {
-        console.log('Something went wrong -> addTeam() -> res=', res);
-      }
-    },
-      (error) => {
-        console.log('Error Occured -> addTeam() -> error=', error);
-      });
-  }
-
-  updateTeam(team: Team) {
-    team.emailId = 'new' +  Math.floor(Math.random()*100).toString() +'@updated.com';
-    this.teamService.updateTeam(team).subscribe((res) => {
-      if (res) {
-      } else {
-        console.log('Something went wrong -> updateTeam() -> res=', res);
-      }
-    },
-      (error) => {
-        console.log('Error Occured -> updateTeam() -> error=', error);
-      });
+  updateTeam(id: number) {
+    this.router.navigate(['updateTeam', id]);
   }
 
   deleteTeam(id: number) {
@@ -92,15 +53,15 @@ export class HomeComponent implements OnInit {
 
   keepFirst() {
     let teamsToBeKept: number = 1;
-    this.teamService.keepFirst(teamsToBeKept).subscribe((res:Team[]) => {
+    this.teamService.keepFirst(teamsToBeKept).subscribe((res: Team[]) => {
       if (res) {
         let idArr: number[] = [];
 
-        res.forEach((res)=>{
+        res.forEach((res) => {
           idArr.push(res.id);
         });
 
-        this.teams = this.teams.filter((team)=>{
+        this.teams = this.teams.filter((team) => {
           return !idArr.includes(team.id);
         });
 

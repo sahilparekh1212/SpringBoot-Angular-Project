@@ -1,4 +1,27 @@
 <h4>Add Team</h4>
+
+<div *ngIf="showMessage">
+    
+    <ng-container *ngIf="isTeamAdded; else errorTemplate"
+        class="d-flex row justify-content-around text-success border border-success">
+
+        <div *ngIf="id" class="d-flex row justify-content-around text-success border border-success">
+            <div class="col-11">Added Team Successfully. Team id is {{id}}.</div>
+            <div class="col-1"><button class="bg-dark text-success border-0"
+                    (click)="showMessage = !showMessage">&times;</button></div>
+        </div>
+    </ng-container>
+
+    <ng-template #errorTemplate>
+        <div class="d-flex row justify-content-around text-danger border border-danger">
+            <div class="col-11">Something went wrong!</div>
+            <div class="col-1"><button class="bg-dark text-danger border-0"
+                    (click)="showMessage = !showMessage">&times;</button></div>
+        </div>
+    </ng-template>
+
+</div>
+
 <form (ngSubmit)="onSubmit()">
 
     <div>
@@ -17,5 +40,5 @@
     </div>
 
     <button type="submit" class="m-2 bg-dark text-info rounded">Submit</button>
-    
+
 </form>
