@@ -22,23 +22,26 @@
 
 </div>
 
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #addTeamForm="ngForm">
 
     <div>
         <label class="m-2" for="teamName">teamName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="teamDetails.teamName">
+        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="teamDetails.teamName" required minlength="3" #teamName="ngModel">
+        <span [hidden]="teamName.valid" class="small text-danger p-2" >Minimum length 3 is required</span>
     </div>
 
     <div>
         <label class="m-2" for="gameName">gameName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="teamDetails.gameName">
+        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="teamDetails.gameName" required minlength="4" #gameName="ngModel">
+        <span [hidden]="gameName.valid" class="small text-danger p-2">Minimum length 4 is required</span>
     </div>
 
     <div>
         <label class="m-2" for="emailId">emailId</label>
-        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="teamDetails.emailId">
+        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="teamDetails.emailId" required #emailId="ngModel">
+        <span [hidden]="emailId.valid" class="small text-danger p-2" >Mandatory field</span>
     </div>
 
-    <button type="submit" class="m-2 bg-dark text-info rounded">Submit</button>
+    <button type="submit" [disabled]="!addTeamForm.form.valid" class="m-2 bg-dark border rounded" [ngClass]=" !addTeamForm.form.valid ? 'text-danger border-danger' : 'text-success border-success'">Submit</button>
 
 </form>
