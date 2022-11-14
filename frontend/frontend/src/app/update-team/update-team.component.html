@@ -1,7 +1,7 @@
 <h4>Update Team</h4>
 
 <div *ngIf="showMessage">
-    
+
     <ng-container *ngIf="isTeamUpdated; else errorTemplate"
         class="d-flex row justify-content-around text-success border border-success">
 
@@ -22,28 +22,29 @@
 
 </div>
 
-<form (ngSubmit)="onSubmit()">
-    
+<form [formGroup]="updateTeamFormGroup" (ngSubmit)="onSubmit()">
+
     <div>
         <label class="m-2" for="teamId">teamId</label>
-        <input class="col-6 bg-dark text-light" type="text" name="teamId" [(ngModel)]="team.id" disabled>
+        <input class="col-6 bg-dark text-light" type="text" name="teamId" [value]="team.id" disabled>
     </div>
 
     <div>
         <label class="m-2" for="teamName">teamName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="team.teamName">
+        <input class="col-6 bg-dark text-light" type="text" name="teamName" formControlName="teamName">
     </div>
 
     <div>
         <label class="m-2" for="gameName">gameName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="team.gameName">
+        <input class="col-6 bg-dark text-light" type="text" name="gameName" formControlName="gameName">
     </div>
 
     <div>
         <label class="m-2" for="emailId">emailId</label>
-        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="team.emailId">
+        <input class="col-6 bg-dark text-light" type="email" name="emailId" formControlName="emailId">
     </div>
 
-    <button type="submit" class="m-2 bg-dark text-info rounded">Submit</button>
-
+    <button type="submit" [disabled]="!updateTeamFormGroup.valid" class="m-2 bg-dark rounded"
+        [ngClass]=" !updateTeamFormGroup.valid ? 'text-danger border-danger' : 'text-success border-success'">Submit</button>
+    <button (click)="clearForm()" class="m-2 bg-dark rounded text-info border-info">Clear</button>
 </form>
