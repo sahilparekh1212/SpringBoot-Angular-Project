@@ -25,23 +25,44 @@
 <form [formGroup]="updateTeamFormGroup" (ngSubmit)="onSubmit()">
 
     <div>
-        <label class="m-2" for="teamId">teamId</label>
+        <label class="m-2" for="teamId">Team Id:&nbsp;</label>
         <input class="col-6 bg-dark text-light" type="text" name="teamId" [value]="team.id" disabled>
     </div>
 
     <div>
-        <label class="m-2" for="teamName">teamName</label>
+        <label class="m-2" for="teamName">Team Name:&nbsp;</label>
         <input class="col-6 bg-dark text-light" type="text" name="teamName" formControlName="teamName">
+        <small class="text-danger mx-2">
+            <span *ngIf="teamName?.errors?.['required']">
+                * required &emsp;
+            </span>
+            <span *ngIf="teamName?.errors?.['maxlength']">
+                * maximum 2 characters can be added&emsp;
+            </span>
+        </small>
     </div>
 
     <div>
-        <label class="m-2" for="gameName">gameName</label>
+        <label class="m-2" for="gameName">Game Name:&nbsp;</label>
         <input class="col-6 bg-dark text-light" type="text" name="gameName" formControlName="gameName">
+        <small class="text-danger mx-2">
+            <span *ngIf="gameName?.errors?.['required']">
+                * required &emsp;
+            </span>
+            <span *ngIf="gameName?.errors?.['minlength']">
+                * minimum 4 characters are required &emsp;
+            </span>
+        </small>
     </div>
 
     <div>
-        <label class="m-2" for="emailId">emailId</label>
+        <label class="m-2" for="emailId">Email Id:&nbsp;</label>
         <input class="col-6 bg-dark text-light" type="email" name="emailId" formControlName="emailId">
+        <small class="text-danger mx-2">
+            <span *ngIf="emailId?.errors?.['required']">
+                * required &emsp;
+            </span>
+        </small>
     </div>
 
     <button type="submit" [disabled]="!updateTeamFormGroup.valid" class="m-2 bg-dark rounded"

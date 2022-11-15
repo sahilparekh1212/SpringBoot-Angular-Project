@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TeamService } from '../services/team.service';
 import { Team } from '../utility/class/team/team';
@@ -15,7 +15,7 @@ export class UpdateTeamComponent implements OnInit {
   showMessage: boolean = false;
   isTeamUpdated: boolean = false;
   updateTeamFormGroup: FormGroup = new FormGroup({
-    teamName: new FormControl(this.team.teamName, Validators.compose([Validators.required, Validators.minLength(3)])),
+    teamName: new FormControl(this.team.teamName, Validators.compose([Validators.required, Validators.maxLength(2)])),
     gameName: new FormControl(this.team.gameName, Validators.compose([Validators.required, Validators.minLength(4)])),
     emailId: new FormControl(this.team.emailId, Validators.compose([Validators.required]))
   });
