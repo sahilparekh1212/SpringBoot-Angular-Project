@@ -20,11 +20,16 @@
 
 </div>
 
-<ng-container *ngIf="showSimilarTeamDetailsError">
-    <div *ngIf="similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
+<ng-container>
+    <div *ngIf="showSimilarTeamNameAndGameNameError && similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
         <div class="col-11">Team with name- <em class="text-info">{{similarTeamDetails.teamName}}</em> already exists in game- <em class="text-info">{{similarTeamDetails.gameName}}</em>.</div>
         <div class="col-1"><button class="bg-dark text-danger border-0"
-                (click)="showSimilarTeamDetailsError = !showSimilarTeamDetailsError">&times;</button></div>
+                (click)="showSimilarTeamNameAndGameNameError = !showSimilarTeamNameAndGameNameError">&times;</button></div>
+    </div>
+    <div *ngIf="showSimilarTeamEmailIdError && similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
+        <div class="col-11">Team with emailId- <em *ngIf="similarTeamDetails && similarTeamDetails.emailId" class="text-info">{{similarTeamDetails.emailId}}</em> already exists</div>
+        <div class="col-1"><button class="bg-dark text-danger border-0"
+                (click)="showSimilarTeamEmailIdError = !showSimilarTeamEmailIdError">&times;</button></div>
     </div>
 </ng-container>
 

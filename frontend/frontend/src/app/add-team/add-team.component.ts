@@ -17,7 +17,9 @@ export class AddTeamComponent implements OnInit {
   id: number | undefined;
   teams: Team[] = [];
   similarTeamDetails: TeamWithoutId | undefined;
-  showSimilarTeamDetailsError: boolean = false;
+  showSimilarTeamNameAndGameNameError: boolean = false;
+  showSimilarTeamEmailIdError: boolean = false;
+
   @ViewChild('addTeamForm', { static: true }) addTeamForm: NgForm | undefined;
 
   constructor(private teamService: TeamService) { }
@@ -25,11 +27,14 @@ export class AddTeamComponent implements OnInit {
   ngOnInit(): void {
     this.setTeamDetails();
     this.addTeamForm?.valueChanges?.subscribe((res) => {
-
       //dynamically assigning toggleSimilarTeamDetailsError to false
-      if (this.showSimilarTeamDetailsError && this.similarTeamDetails && (res.teamName.trim() != this.similarTeamDetails.teamName
-        || res.gameName.trim() != this.similarTeamDetails.gameName)) {
-        this.toggleSimilarTeamDetailsError(false);
+      if (this.similarTeamDetails) {
+        if((res.teamName.trim() != this.similarTeamDetails.teamName || res.gameName.trim() != this.similarTeamDetails.gameName)){
+          this.toggleSimilarTeamDetailsError(false,this.showSimilarTeamEmailIdError);
+        } 
+        if(res.emailId.trim() != this.similarTeamDetails.emailId) {
+          this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError,false);
+        }
       }
     });
   }
@@ -54,25 +59,27 @@ export class AddTeamComponent implements OnInit {
   }
 
   addTeam(teamDetails: TeamWithoutId) {
-    console.log('Teams=', this.teams);
     if (this.isTeamNameAndGameUnique(this.teams, teamDetails)) {
-      console.log('if');
-      this.teamService.addTeam(teamDetails).subscribe((res) => {
-        if (res) {
-          this.id = res.id;
-          this.isTeamAdded = true;
-          this.setTeamDetails();
-        } else {
-          console.log('Something went wrong -> addTeam() -> res=', res);
-        }
-        this.showMessage = true;
-      },
-        (error) => {
-          console.log('Error Occured -> addTeam() -> error=', error);
-        });
+      if(this.isTeamEmailIdUnique(this.teams, teamDetails)){
+        this.teamService.addTeam(teamDetails).subscribe((res) => {
+          if (res) {
+            this.id = res.id;
+            this.isTeamAdded = true;
+            this.setTeamDetails();
+          } else {
+            console.log('Something went wrong -> addTeam() -> res=', res);
+          }
+          this.showMessage = true;
+        },
+          (error) => {
+            console.log('Error Occured -> addTeam() -> error=', error);
+          });
+      } else{
+        this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError,true,teamDetails);
+      }
+
     } else {
-      console.log('else');
-      this.toggleSimilarTeamDetailsError(true, teamDetails);
+      this.toggleSimilarTeamDetailsError(true,null,teamDetails);
     }
   }
 
@@ -161,9 +168,28 @@ export class AddTeamComponent implements OnInit {
     return result;
   }
 
-  toggleSimilarTeamDetailsError(showSimilarTeamDetailsError: boolean, similarTeamDetails?: any) {
+  toggleSimilarTeamDetailsError(showSimilarTeamNameAndGameNameError: boolean, showSimilarTeamEmailIdError?:any, similarTeamDetails?: any) {
     this.similarTeamDetails = similarTeamDetails;
-    this.showSimilarTeamDetailsError = showSimilarTeamDetailsError;
+    this.showSimilarTeamNameAndGameNameError = showSimilarTeamNameAndGameNameError;
+
+    if(showSimilarTeamEmailIdError===(true || false)){
+      this.showSimilarTeamEmailIdError = showSimilarTeamEmailIdError;
+    }
+
+  }
+
+  isTeamEmailIdUnique(teams: Team[], input: TeamWithoutId){
+    let result: boolean = false;
+    if (teams) {
+      let teamsCopy: Team[] = teams;
+      let matchedTeam = teamsCopy.find((team) => (team.emailId == input.emailId));
+
+      if (!matchedTeam) {
+        result = true;
+      }
+
+    }
+    return result;
   }
 
 }
