@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     this.teamService.getTeams().subscribe((res) => {
       if (res) {
         this.teams = res;
+        this.teamService.teams = res;
       } else {
         console.log('Something went wrong -> getTeams() -> res=', res);
       }

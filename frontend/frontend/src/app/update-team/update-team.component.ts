@@ -15,7 +15,7 @@ export class UpdateTeamComponent implements OnInit {
   showMessage: boolean = false;
   isTeamUpdated: boolean = false;
   updateTeamFormGroup: FormGroup = new FormGroup({
-    teamName: new FormControl(this.team.teamName, Validators.compose([Validators.required, Validators.maxLength(2)])),
+    teamName: new FormControl(this.team.teamName, Validators.compose([Validators.required, Validators.maxLength(8)])),
     gameName: new FormControl(this.team.gameName, Validators.compose([Validators.required, Validators.minLength(4)])),
     emailId: new FormControl(this.team.emailId, Validators.compose([Validators.required]))
   });

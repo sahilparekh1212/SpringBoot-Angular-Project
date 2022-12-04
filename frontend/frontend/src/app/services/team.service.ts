@@ -10,6 +10,7 @@ import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id'
 export class TeamService {
 
   baseURL = 'http://localhost:8080/api/v1/';
+  public teams: Team[] = [];
 
   constructor(private httpClient: HttpClient) { }
 

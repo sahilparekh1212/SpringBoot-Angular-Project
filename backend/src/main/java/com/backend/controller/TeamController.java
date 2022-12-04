@@ -50,7 +50,7 @@ public class TeamController {
 		}
 		return ResponseEntity.ok(team);
 	}
-	
+
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("addTeam")
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
@@ -69,7 +69,7 @@ public class TeamController {
 
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("updateTeam/{id}")
-	public ResponseEntity<Optional<Team>> updateTeam(@PathVariable Long id,@RequestBody Team team) {
+	public ResponseEntity<Optional<Team>> updateTeam(@PathVariable Long id, @RequestBody Team team) {
 		Optional<Team> response = Optional.ofNullable(new Team());
 		try {
 			if (id == team.getId()) {
@@ -79,8 +79,9 @@ public class TeamController {
 				} else {
 					System.out.printf("\nError in updateTeam() -> Team with id=" + team.getId() + " doesn't exist\n");
 				}
-			}else {
-				System.out.printf("\nError in updateTeam() -> Id mismatch. URL has id="+id+". Payload has Team object with id=" + team.getId() + "\n");	
+			} else {
+				System.out.printf("\nError in updateTeam() -> Id mismatch. URL has id=" + id
+						+ ". Payload has Team object with id=" + team.getId() + "\n");
 			}
 		} catch (Exception e) {
 			System.out.printf("\nError in updateTeam() -> e=" + e.toString() + "\n");
@@ -104,7 +105,7 @@ public class TeamController {
 		}
 		return ResponseEntity.ok(team);
 	}
-	
+
 	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("keepFirst/{x}")
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable Long x) {
@@ -112,8 +113,8 @@ public class TeamController {
 		List<Team> deletedTeams = new ArrayList<Team>();
 		try {
 			allTeams = teamRepository.findAll();
-			for(int i=0;i<=allTeams.size();i++) {
-				if(i>=x) {
+			for (int i = 0; i < allTeams.size(); i++) {
+				if (i >= x) {
 					deletedTeams.add(allTeams.get(i));
 					teamRepository.delete(allTeams.get(i));
 				}

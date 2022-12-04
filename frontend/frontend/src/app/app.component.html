@@ -1,10 +1,13 @@
-
-    <div class="container ">
-        <nav>
-            <ul class="d-flex">
-              <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-              <li><a routerLink="/addTeam" routerLinkActive="active" ariaCurrentWhenActive="page">Add Team</a></li>
-            </ul>
-        </nav>
+<div class="container">
+    <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link text-info" routerLink="/home" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-info" routerLink="/addTeam" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Add Team</a></li>
+        </ul>
+    </nav>
+    <div class="my-4 mx-2">
         <router-outlet></router-outlet>
     </div>
+</div>

@@ -1,7 +1,5 @@
-<h4>Add Team</h4>
-
 <div *ngIf="showMessage">
-    
+
     <ng-container *ngIf="isTeamAdded; else errorTemplate"
         class="d-flex row justify-content-around text-success border border-success">
 
@@ -22,26 +20,39 @@
 
 </div>
 
-<form (ngSubmit)="onSubmit()" #addTeamForm="ngForm">
+<ng-container *ngIf="showSimilarTeamDetailsError">
+    <div *ngIf="similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
+        <div class="col-11">Team with name- <em class="text-info">{{similarTeamDetails.teamName}}</em> already exists in game- <em class="text-info">{{similarTeamDetails.gameName}}</em>.</div>
+        <div class="col-1"><button class="bg-dark text-danger border-0"
+                (click)="showSimilarTeamDetailsError = !showSimilarTeamDetailsError">&times;</button></div>
+    </div>
+</ng-container>
+
+
+<form (ngSubmit)="onSubmit(teamDetails)" #addTeamForm="ngForm">
 
     <div>
         <label class="m-2" for="teamName">teamName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="teamDetails.teamName" required minlength="3" #teamName="ngModel">
-        <span [hidden]="teamName.valid" class="small text-danger p-2" >Minimum length 3 is required</span>
+        <input class="col-6 bg-dark text-light" type="text" name="teamName" [(ngModel)]="teamDetails.teamName" required
+            maxlength="8" #teamName="ngModel">
+        <span [hidden]="teamName.valid" class="small text-danger p-2">Maximum length 8 is allowed</span>
     </div>
 
     <div>
         <label class="m-2" for="gameName">gameName</label>
-        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="teamDetails.gameName" required minlength="4" #gameName="ngModel">
+        <input class="col-6 bg-dark text-light" type="text" name="gameName" [(ngModel)]="teamDetails.gameName" required
+            minlength="4" #gameName="ngModel">
         <span [hidden]="gameName.valid" class="small text-danger p-2">Minimum length 4 is required</span>
     </div>
 
     <div>
         <label class="m-2" for="emailId">emailId</label>
-        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="teamDetails.emailId" required #emailId="ngModel">
-        <span [hidden]="emailId.valid" class="small text-danger p-2" >Mandatory field</span>
+        <input class="col-6 bg-dark text-light" type="email" name="emailId" [(ngModel)]="teamDetails.emailId" required
+            #emailId="ngModel">
+        <span [hidden]="emailId.valid" class="small text-danger p-2">Mandatory field</span>
     </div>
 
-    <button type="submit" [disabled]="!addTeamForm.form.valid" class="m-2 bg-dark border rounded" [ngClass]=" !addTeamForm.form.valid ? 'text-danger border-danger' : 'text-success border-success'">Submit</button>
+    <button type="submit" [disabled]="!addTeamForm.form.valid" class="m-2 bg-dark border rounded"
+        [ngClass]=" !addTeamForm.form.valid ? 'text-danger border-danger' : 'text-success border-success'">Submit</button>
 
 </form>
