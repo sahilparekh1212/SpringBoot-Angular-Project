@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TeamService } from '../services/team.service';
 import { Team } from '../utility/class/team/team';
@@ -14,10 +14,10 @@ export class UpdateTeamComponent implements OnInit {
   team: Team = new Team();
   showMessage: boolean = false;
   isTeamUpdated: boolean = false;
-  updateTeamFormGroup: FormGroup = new FormGroup({
-    teamName: new FormControl(this.team.teamName, Validators.compose([Validators.required, Validators.maxLength(8)])),
-    gameName: new FormControl(this.team.gameName, Validators.compose([Validators.required, Validators.minLength(4)])),
-    emailId: new FormControl(this.team.emailId, Validators.compose([Validators.required]))
+  updateTeamFormGroup: UntypedFormGroup = new UntypedFormGroup({
+    teamName: new UntypedFormControl(this.team.teamName, Validators.compose([Validators.required, Validators.maxLength(8)])),
+    gameName: new UntypedFormControl(this.team.gameName, Validators.compose([Validators.required, Validators.minLength(4)])),
+    emailId: new UntypedFormControl(this.team.emailId, Validators.compose([Validators.required]))
   });
 
   constructor(private teamService: TeamService, private activatedRoute: ActivatedRoute) { }
