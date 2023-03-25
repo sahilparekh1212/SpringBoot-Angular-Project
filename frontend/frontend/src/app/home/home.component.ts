@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../services/team.service';
 import { Team } from '../utility/class/team/team';
-import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id';
 import { Router } from '@angular/router';
 
 @Component({
