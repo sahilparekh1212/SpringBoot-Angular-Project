@@ -1,14 +1,36 @@
 <h1>SpringBoot, Angular fullstack-project</h1>
-Technologies: Angular, SpringBoot
+Technologies: Angular, SpringBoot, MySQL
 </br>
-<h3>Guide to run SpringBoot App:</h3>
-
-<ul>Go to: 
-	<li><strong>fullstack-project/backend/</strong></li>
+</br>
+<h3>Guide to run Database:</h3>
+<ul>
+	<li>Go to: <strong>fullstack-project/DB Script, Postman Collection etc/ DB Scripts.sql</strong></li>
+	<li>
+		<ol>
+			<li>Copy script and execute in <a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+		</ol>
+	</li>
 </ul>
-
-<ol>Run code:
-	<li><em>mvn clean install -DskipTests=true;</li>
-	<li><em>mvn clean spring-boot:run;</li>
-</ol>
 </br>
+
+<h3>Guide to run SpringBoot App:</h3>
+<ul>
+	<li>Go to: <strong>fullstack-project/backend/</strong></li>
+	<li>Run code:
+		<ol>
+			<li><code style="user-select: all;">mvn clean install -DskipTests=true</code></li>
+			<li><code style="user-select: all;">mvn clean spring-boot:run</code></li>
+		</ol>
+	</li>
+</ul>
+</br>
+
+<h3>Guide to run Angular App:</h3>
+<ul>
+	<li>Go to: <strong>fullstack-project/frontend/</strong></li>
+	<li>Run code:
+		<ol>
+			<li><code style="user-select: all;">npm start</code></li>
+		</ol>
+	</li>
+</ul>
