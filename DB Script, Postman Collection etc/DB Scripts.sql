@@ -7,6 +7,10 @@ CREATE TABLE `teams_management_system`.`team` (
     email_id VARCHAR(30)
 );
 
-insert into teams_management_system.team(team_name,game_name,email_id) values('A','Game A','a@game.com'); 
-insert into teams_management_system.team(team_name,game_name,email_id) values('B','Game B','b@game.com'); 
-insert into teams_management_system.team(team_name,game_name,email_id) values('C','Game C','c@game.com'); 
+DESCRIBE teams_management_system.team;
+
+INSERT INTO teams_management_system.team(team_name,game_name,email_id) VALUES('A','Game A','a@game.com'); 
+INSERT INTO teams_management_system.team(team_name,game_name,email_id) VALUES('B','Game B','b@game.com'); 
+INSERT INTO teams_management_system.team(team_name,game_name,email_id) VALUES('C','Game C','c@game.com'); 
+
+SELECT * FROM teams_management_system.team;
