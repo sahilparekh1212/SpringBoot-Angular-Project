@@ -4,7 +4,7 @@ Technologies: Angular, SpringBoot, MySQL
 </br>
 <h3>Guide to run Database:</h3>
 <ul>
-	<li>Go to: <strong>fullstack-project/DB Script, Postman Collection etc/ DB Scripts.sql</strong></li>
+	<li>Go to: <strong>SpringBoot-Angular-Project/DB Script, Postman Collection etc/ DB Scripts.sql</strong></li>
 	<li>
 		<ol>
 			<li>Copy script and execute in <a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
@@ -15,7 +15,7 @@ Technologies: Angular, SpringBoot, MySQL
 
 <h3>Guide to run SpringBoot App:</h3>
 <ul>
-	<li>Go to: <strong>fullstack-project/backend/</strong></li>
+	<li>Go to: <strong>SpringBoot-Angular-Project/backend/</strong></li>
 	<li>Run code:
 		<ol>
 			<li><code style="user-select: all;">mvn clean install -DskipTests=true</code></li>
