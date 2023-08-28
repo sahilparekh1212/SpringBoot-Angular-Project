@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.Team;
-import com.backend.repository.TeamRepository;
+import com.backend.service.TeamService;
 import com.backend.utility.TeamWithoutId;
 
 @RestController
@@ -25,16 +25,16 @@ import com.backend.utility.TeamWithoutId;
 public class TeamController {
 
 	@Autowired
-	private TeamRepository teamRepository;
+	private TeamService teamService;
 
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("getTeams")
 	public List<Team> getTeams() {
 		List<Team> res = new ArrayList<Team>();
 		try {
-			res.addAll(0, teamRepository.findAll());
+			res = teamService.findAllTeams();
 		} catch (Exception e) {
-			System.out.printf("\nError in getTeams -> e=" + e.toString() + "\n");
+			System.out.println("\nError in getTeams -> e=" + e.toString() + "\n");
 		}
 		return res;
 	}
@@ -44,9 +44,9 @@ public class TeamController {
 	public ResponseEntity<Optional<Team>> getTeams(@PathVariable Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
 		try {
-			team = teamRepository.findById(id);
+			team = teamService.findTeamById(id);
 		} catch (Exception e) {
-			System.out.printf("\nError in getTeams -> e=" + e.toString() + "\n");
+			System.out.println("\nError in getTeams -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(team);
 	}
@@ -54,15 +54,11 @@ public class TeamController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("addTeam")
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
-		Team team = new Team();
-		team.setId(Long.getLong(null, 0));
-		team.setTeamName(teamWithoutId.getTeamName());
-		team.setGameName(teamWithoutId.getGameName());
-		team.setemailId(teamWithoutId.getemailId());
+		Team team = new Team(teamWithoutId.getTeamName(), teamWithoutId.getGameName(), teamWithoutId.getemailId());
 		try {
-			team = teamRepository.save(team);
+			team = teamService.saveTeam(team);
 		} catch (Exception e) {
-			System.out.printf("\nError in addTeam() -> e=" + e.toString() + "\n");
+			System.out.println("\nError in addTeam() -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(team);
 	}
@@ -72,19 +68,14 @@ public class TeamController {
 	public ResponseEntity<Optional<Team>> updateTeam(@PathVariable Long id, @RequestBody Team team) {
 		Optional<Team> response = Optional.ofNullable(new Team());
 		try {
-			if (id == team.getId()) {
-				response = teamRepository.findById(team.getId());
-				if (response != null) {
-					teamRepository.save(team);
-				} else {
-					System.out.printf("\nError in updateTeam() -> Team with id=" + team.getId() + " doesn't exist\n");
-				}
+			if (teamService.updateTeam(team)) {
+				response = teamService.findTeamById(team.getId());
 			} else {
-				System.out.printf("\nError in updateTeam() -> Id mismatch. URL has id=" + id
+				System.out.println("\nError in updateTeam() -> Id mismatch. URL has id=" + id
 						+ ". Payload has Team object with id=" + team.getId() + "\n");
 			}
 		} catch (Exception e) {
-			System.out.printf("\nError in updateTeam() -> e=" + e.toString() + "\n");
+			System.out.println("\nError in updateTeam() -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(response);
 	}
@@ -94,14 +85,12 @@ public class TeamController {
 	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
 		try {
-			team = teamRepository.findById(id);
-			if (team != null) {
-				teamRepository.deleteById(id);
-			} else {
-				System.out.printf("\nError in updateTeam() -> Team with id=" + id + " doesn't exist\n");
+			team = teamService.deleteTeamById(id);
+			if (!team.isPresent()) {
+				System.out.println("\nError in updateTeam() -> Team with id=" + id + " doesn't exist\n");
 			}
 		} catch (Exception e) {
-			System.out.printf("\nError in deleteTeam() -> e=" + e.toString() + "\n");
+			System.out.println("\nError in deleteTeam() -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(team);
 	}
@@ -109,18 +98,11 @@ public class TeamController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("keepFirst/{x}")
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable Long x) {
-		List<Team> allTeams = new ArrayList<Team>();
 		List<Team> deletedTeams = new ArrayList<Team>();
 		try {
-			allTeams = teamRepository.findAll();
-			for (int i = 0; i < allTeams.size(); i++) {
-				if (i >= x) {
-					deletedTeams.add(allTeams.get(i));
-					teamRepository.delete(allTeams.get(i));
-				}
-			}
+			deletedTeams = teamService.keepFirstX(x);
 		} catch (Exception e) {
-			System.out.printf("\nError in keepFirstX() -> e=" + e.toString() + "\n");
+			System.out.println("\nError in keepFirstX() -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(deletedTeams);
 	}

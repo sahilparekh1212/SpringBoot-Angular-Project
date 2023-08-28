@@ -34,7 +34,7 @@ public class Team {
 		this.emailId = emailId;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
