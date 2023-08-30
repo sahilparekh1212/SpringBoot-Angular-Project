@@ -21,27 +21,27 @@ import com.backend.service.TeamService;
 import com.backend.utility.TeamWithoutId;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping(value = "/api/v1/")
 public class TeamController {
 
 	@Autowired
 	private TeamService teamService;
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("getTeams")
-	public List<Team> getTeams() {
-		List<Team> res = new ArrayList<Team>();
+	@GetMapping(value = "getTeams", produces = { "application/json" })
+	public ResponseEntity<List<Team>> getTeams() {
+		List<Team> teams = new ArrayList<>();
 		try {
-			res = teamService.findAllTeams();
+			teams = teamService.findAllTeams();
 		} catch (Exception e) {
 			System.out.println("\nError in getTeams -> e=" + e.toString() + "\n");
 		}
-		return res;
+		return ResponseEntity.ok(teams);
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping("getTeams/{id}")
-	public ResponseEntity<Optional<Team>> getTeams(@PathVariable Long id) {
+	@GetMapping(value = "getTeams/{id}", produces = { "application/json" })
+	public ResponseEntity<Optional<Team>> getTeams(@PathVariable("id") Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
 		try {
 			team = teamService.findTeamById(id);
@@ -52,7 +52,7 @@ public class TeamController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping("addTeam")
+	@PostMapping(value = "addTeam", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
 		Team team = new Team(teamWithoutId.getTeamName(), teamWithoutId.getGameName(), teamWithoutId.getemailId());
 		try {
@@ -64,15 +64,14 @@ public class TeamController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("updateTeam/{id}")
-	public ResponseEntity<Optional<Team>> updateTeam(@PathVariable Long id, @RequestBody Team team) {
+	@PutMapping(value = "updateTeam/{id}", produces = { "application/json" }, consumes = { "application/json" })
+	public ResponseEntity<Optional<Team>> updateTeam(@RequestBody Team team) {
 		Optional<Team> response = Optional.ofNullable(new Team());
 		try {
 			if (teamService.updateTeam(team)) {
 				response = teamService.findTeamById(team.getId());
 			} else {
-				System.out.println("\nError in updateTeam() -> Id mismatch. URL has id=" + id
-						+ ". Payload has Team object with id=" + team.getId() + "\n");
+				System.out.println("\n Could not update details for id=" + team.getId() + "\n");
 			}
 		} catch (Exception e) {
 			System.out.println("\nError in updateTeam() -> e=" + e.toString() + "\n");
@@ -81,8 +80,8 @@ public class TeamController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping("deleteTeam/{id}")
-	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable Long id) {
+	@DeleteMapping(value = "deleteTeam/{id}", produces = { "application/json" })
+	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable("id") Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
 		try {
 			team = teamService.deleteTeamById(id);
@@ -96,9 +95,9 @@ public class TeamController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping("keepFirst/{x}")
-	public ResponseEntity<List<Team>> keepFirstX(@PathVariable Long x) {
-		List<Team> deletedTeams = new ArrayList<Team>();
+	@DeleteMapping(value = "keepFirst/{x}", produces = { "application/json" })
+	public ResponseEntity<List<Team>> keepFirstX(@PathVariable("x") Long x) {
+		List<Team> deletedTeams = new ArrayList<>();
 		try {
 			deletedTeams = teamService.keepFirstX(x);
 		} catch (Exception e) {

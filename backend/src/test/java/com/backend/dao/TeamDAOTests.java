@@ -1,4 +1,4 @@
-package com.backend.repository;
+package com.backend.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -19,53 +19,53 @@ import com.backend.model.Team;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BackendApplication.class)
-public class TeamRepositoryTests {
+public class TeamDAOTests {
     @Autowired
-    private TeamRepository teamRepository;
+    private TeamDAO teamDAO;
 
     @Test
     public void findAllTeamsTest() {
-        List<Team> dbList = teamRepository.findAll();
+        List<Team> dbList = teamDAO.findAll();
         Team teamA = new Team("aTeam", "aGame", "a@email.com");
         Team teamB = new Team("bTeam", "bGame", "b@email.com");
-        teamA = teamRepository.save(teamA);
-        teamB = teamRepository.save(teamB);
-        List<Team> dbList2 = teamRepository.findAll();
+        teamA = teamDAO.save(teamA);
+        teamB = teamDAO.save(teamB);
+        List<Team> dbList2 = teamDAO.findAll();
         assertEquals(dbList2.size() - dbList.size(), 2);
-        teamRepository.deleteById(teamA.getId());
-        teamRepository.deleteById(teamB.getId());
+        teamDAO.deleteById(teamA.getId());
+        teamDAO.deleteById(teamB.getId());
     }
 
     @Test
     public void saveTeamTest() {
         Team team = new Team("aTeam", "aGame", "a@email.com");
-        team = teamRepository.save(team);
+        team = teamDAO.save(team);
         Assertions.assertThat(team.getId()).isGreaterThan(0L);
-        teamRepository.deleteById(team.getId());
+        teamDAO.deleteById(team.getId());
     }
 
     @Test
     public void findByIdTeamTest() {
         Team team = new Team("aTeam", "aGame", "a@email.com");
-        Team expected = teamRepository.save(team);
-        Optional<Team> actual = teamRepository.findById(expected.getId());
+        Team expected = teamDAO.save(team);
+        Optional<Team> actual = teamDAO.findById(expected.getId());
         assertTrue(actual.isPresent());
-        teamRepository.deleteById(expected.getId());
+        teamDAO.deleteById(expected.getId());
     }
 
     @Test
     public void deleteByIdTeamTest() {
         Team team = new Team("aTeam", "aGame", "a@email.com");
-        Team expected = teamRepository.save(team);
-        teamRepository.deleteById(expected.getId());
-        assertFalse(teamRepository.findById(expected.getId()).isPresent());
+        Team expected = teamDAO.save(team);
+        teamDAO.deleteById(expected.getId());
+        assertFalse(teamDAO.findById(expected.getId()).isPresent());
     }
 
     @Test
     public void deleteTeamTest() {
         Team team = new Team("aTeam", "aGame", "a@email.com");
-        Team expected = teamRepository.save(team);
-        teamRepository.delete(expected);
-        assertFalse(teamRepository.findById(expected.getId()).isPresent());
+        Team expected = teamDAO.save(team);
+        teamDAO.delete(expected);
+        assertFalse(teamDAO.findById(expected.getId()).isPresent());
     }
 }

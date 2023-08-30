@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.dao.TeamDAO;
 import com.backend.model.Team;
-import com.backend.repository.TeamRepository;
 
 @Service
 public class TeamService {
 
     @Autowired
-    private TeamRepository teamRepository;
+    private TeamDAO teamRepository;
 
     public List<Team> findAllTeams() {
         return teamRepository.findAll();
