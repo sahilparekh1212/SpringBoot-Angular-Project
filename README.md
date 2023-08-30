@@ -13,7 +13,7 @@ Technologies: Angular, SpringBoot, MySQL
 		</ol>
 		</p>
 		<li>Access Database: <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a></li>
-		<li>Access Postman Collection: <a href="https://github.com/sahilparekh1212/SpringBoot-Angular-Project/tree/main/postmanCollection" target="_blank">/postmanCollection</a></li>
+		<li>Access ER Diagram & Postman Collection: <a href="https://github.com/sahilparekh1212/SpringBoot-Angular-Project/tree/main/postmanCollection" target="_blank">/postmanCollection</a></li>
 </ul>
 </br>
 <hr>
