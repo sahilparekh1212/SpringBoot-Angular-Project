@@ -14,18 +14,18 @@ import com.backend.model.Team;
 public class TeamService {
 
     @Autowired
-    private TeamDAO teamRepository;
+    private TeamDAO teamDAO;
 
     public List<Team> findAllTeams() {
-        return teamRepository.findAll();
+        return teamDAO.findAll();
     }
 
     public Optional<Team> findTeamById(Long id) {
-        return teamRepository.findById(id);
+        return teamDAO.findById(id);
     }
 
     public Team saveTeam(Team team) {
-        return teamRepository.save(team);
+        return teamDAO.save(team);
     }
 
     public boolean updateTeam(Team team) {
@@ -37,17 +37,17 @@ public class TeamService {
     }
 
     public Optional<Team> deleteTeamById(Long id) {
-        Optional<Team> team = teamRepository.findById(id);
+        Optional<Team> team = teamDAO.findById(id);
         if (team.isPresent()) {
-            teamRepository.deleteById(id);
+            teamDAO.deleteById(id);
         }
         return team;
     }
 
     public Optional<Team> deleteTeam(Team inputTeam) {
-        Optional<Team> team = teamRepository.findById(inputTeam.getId());
+        Optional<Team> team = teamDAO.findById(inputTeam.getId());
         if (team.isPresent()) {
-            teamRepository.delete(inputTeam);
+            teamDAO.delete(inputTeam);
             return Optional.of(inputTeam);
         }
         return Optional.empty();
