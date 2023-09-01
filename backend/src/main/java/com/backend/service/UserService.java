@@ -15,6 +15,9 @@ public class UserService {
     UserDAO userDAO;
 
     public boolean saveUser(User user) {
+        if (user == null) {
+            return false;
+        }
         User dbValue = userDAO.getByUsername(user.getUsername());
         if (dbValue != null || user.getUsername() == null || user.getPassword() == null || user.getEmailId() == null) {
             return false;

@@ -29,7 +29,7 @@ public class TeamService {
     }
 
     public boolean updateTeam(Team team) {
-        if (this.findTeamById(team.getId()).isPresent()) {
+        if (team != null && this.findTeamById(team.getId()).isPresent()) {
             this.saveTeam(team);
             return true;
         }
@@ -45,10 +45,12 @@ public class TeamService {
     }
 
     public Optional<Team> deleteTeam(Team inputTeam) {
-        Optional<Team> team = teamDAO.findById(inputTeam.getId());
-        if (team.isPresent()) {
-            teamDAO.delete(inputTeam);
-            return Optional.of(inputTeam);
+        if (inputTeam != null) {
+            Optional<Team> team = teamDAO.findById(inputTeam.getId());
+            if (team.isPresent()) {
+                teamDAO.delete(inputTeam);
+                return Optional.of(inputTeam);
+            }
         }
         return Optional.empty();
     }
