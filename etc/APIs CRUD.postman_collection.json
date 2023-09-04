@@ -6,10 +6,57 @@
 	},
 	"item": [
 		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getTeams",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjkzODU5OTg4LCJleHAiOjE2OTM4NjI2ODh9.JotZH2BaRSfEe2ueyEFtyehxhdCs92sOfR68deqLRow",
+						"type": "default",
+						"disabled": true
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/api/v1/getTeams",
 					"protocol": "http",
@@ -29,6 +76,16 @@
 		{
 			"name": "getTeams/{id}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -51,6 +108,16 @@
 		{
 			"name": "addTeam",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -81,6 +148,16 @@
 		{
 			"name": "updateTeam/{id}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -93,7 +170,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/updateTeam",
+					"raw": "http://localhost:8080/api/v1/updateTeam/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -102,7 +179,8 @@
 					"path": [
 						"api",
 						"v1",
-						"updateTeam"
+						"updateTeam",
+						"4"
 					]
 				}
 			},
@@ -111,10 +189,20 @@
 		{
 			"name": "deleteTeam/{id}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/deleteTeam/3111",
+					"raw": "http://localhost:8080/api/v1/deleteTeam/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,7 +212,7 @@
 						"api",
 						"v1",
 						"deleteTeam",
-						"3111"
+						"4"
 					]
 				}
 			},
@@ -133,10 +221,20 @@
 		{
 			"name": "keepFirst/{x}",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/keepFirst/22",
+					"raw": "http://localhost:8080/api/v1/keepFirst/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -146,7 +244,7 @@
 						"api",
 						"v1",
 						"keepFirst",
-						"22"
+						"2"
 					]
 				}
 			},
@@ -158,6 +256,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -188,11 +296,21 @@
 		{
 			"name": "addUser user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\":\"user\",\"password\":\"user\",\"emailId\":\"user@email.com\",\"roles\":\"ROLE_user\"}",
+					"raw": "{\"username\":\"userr\",\"password\":\"userr\",\"emailId\":\"userr@email.com\",\"roles\":\"ROLE_user\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -218,11 +336,21 @@
 		{
 			"name": "addUser admin",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\":\"admin\",\"password\":\"admin\",\"emailId\":\"admin@email.com\",\"roles\":\"ROLE_admin\"}",
+					"raw": "{\"username\":\"adminn\",\"password\":\"adminn\",\"emailId\":\"adminn@email.com\",\"roles\":\"ROLE_admin\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -248,11 +376,21 @@
 		{
 			"name": "addUser combo",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\":\"combo\",\"password\":\"combo\",\"emailId\":\"combo@email.com\",\"roles\":\"ROLE_admin,ROLE_user\"}",
+					"raw": "{\"username\":\"comboo\",\"password\":\"comboo\",\"emailId\":\"comboo@email.com\",\"roles\":\"ROLE_admin,ROLE_user\"}",
 					"options": {
 						"raw": {
 							"language": "json"
