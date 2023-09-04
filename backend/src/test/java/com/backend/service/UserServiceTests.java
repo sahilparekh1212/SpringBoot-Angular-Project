@@ -32,40 +32,28 @@ public class UserServiceTests {
     @Test
     public void findAllUsersTest() {
         List<User> daoRes = new ArrayList<>();
-        daoRes.add(new User("aUser", "aPassword", "a@a.com"));
+        daoRes.add(new User("aUser", "aPassword", "a@a.com", "user"));
         when(userDAO.findAll()).thenReturn(daoRes);
         assertEquals(userService.findAllUsers(), daoRes);
     }
 
     @Test
     public void saveUserTest() {
-        User daoRes = new User("aUser", "aGame", "a@a.com");
+        User daoRes = new User("aUser", "aGame", "a@a.com", "user");
         daoRes.setId(1L);
         when(userDAO.getByUsername("b")).thenReturn(null);
         when(userDAO.getByUsername("aUser")).thenReturn(daoRes);
         assertEquals(userService.saveUser(null), false);
         assertEquals(userService.saveUser(daoRes), false);
-        assertEquals(userService.saveUser(new User(null, "c", "c")), false);
-        assertEquals(userService.saveUser(new User("c", null, "c")), false);
-        assertEquals(userService.saveUser(new User("c", "c", null)), false);
-        assertEquals(userService.saveUser(new User("b", "b", "b")), true);
-    }
-
-    @Test
-    public void isValidUserTest() {
-        User daoRes = new User("aUser", "aPassword", "a@a.com");
-        daoRes.setId(1L);
-        when(userDAO.getByUsername("aUser")).thenReturn(daoRes);
-        assertEquals(userService.isValidUser(null), false);
-        assertEquals(userService.isValidUser(new User(null, "c", "c")), false);
-        assertEquals(userService.isValidUser(new User("c", null, "c")), false);
-        assertEquals(userService.isValidUser(new User("c", "c", null)), false);
-        assertEquals(userService.isValidUser(daoRes), true);
+        assertEquals(userService.saveUser(new User(null, "c", "c", "user")), false);
+        assertEquals(userService.saveUser(new User("c", null, "c", "user")), false);
+        assertEquals(userService.saveUser(new User("c", "c", null, "user")), false);
+        assertEquals(userService.saveUser(new User("b", "b", "b", "user")), true);
     }
 
     @Test
     public void getByUsernameTest() {
-        User daoRes = new User("a", "b", "c");
+        User daoRes = new User("a", "b", "c", "user");
         when(userDAO.getByUsername(Mockito.anyString())).thenReturn(daoRes);
         assertEquals(userService.getByUsername(Mockito.anyString()), daoRes);
     }

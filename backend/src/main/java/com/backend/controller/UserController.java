@@ -36,7 +36,6 @@ public class UserController {
 		return ResponseEntity.ok(users);
 	}
 
-	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "addUser", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
@@ -45,19 +44,6 @@ public class UserController {
 			res = userService.saveUser(user);
 		} catch (Exception e) {
 			System.out.println("\nError in addUser() -> e=" + e.toString() + "\n");
-		}
-		return ResponseEntity.ok(res);
-	}
-
-	@PreAuthorize("hasAuthority('ROLE_admin')")
-	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping(value = "canLogin", produces = { "application/json" }, consumes = { "application/json" })
-	public ResponseEntity<Boolean> isValidUser(@RequestBody User user) {
-		Boolean res = false;
-		try {
-			res = userService.isValidUser(user);
-		} catch (Exception e) {
-			System.out.println("\nError in isValidUser() -> e=" + e.toString() + "\n");
 		}
 		return ResponseEntity.ok(res);
 	}
