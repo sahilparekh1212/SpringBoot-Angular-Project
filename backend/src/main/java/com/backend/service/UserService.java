@@ -40,7 +40,7 @@ public class UserService {
     }
 
     private String getEncodedString(String input) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(5);
         return encoder.encode(input);
     }
 }
