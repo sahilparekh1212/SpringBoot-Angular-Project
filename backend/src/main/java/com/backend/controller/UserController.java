@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getUsers", produces = { "application/json" })
 	public ResponseEntity<List<User>> getUsers() {
@@ -34,6 +36,7 @@ public class UserController {
 		return ResponseEntity.ok(users);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "addUser", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
@@ -46,6 +49,7 @@ public class UserController {
 		return ResponseEntity.ok(res);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "canLogin", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Boolean> isValidUser(@RequestBody User user) {
