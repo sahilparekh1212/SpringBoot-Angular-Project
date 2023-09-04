@@ -24,6 +24,9 @@ public class User {
 	@Column(name = "email_id")
 	private String emailId;
 
+	@Column(name = "roles")
+	private String roles;
+
 	public User() {
 	}
 
@@ -32,10 +35,11 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String username, String password, String emailId) {
+	public User(String username, String password, String emailId, String roles) {
 		this.username = username;
 		this.password = password;
 		this.emailId = emailId;
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -50,7 +54,7 @@ public class User {
 		return username;
 	}
 
-	public static void setUsername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
@@ -70,9 +74,18 @@ public class User {
 		this.emailId = emailId;
 	}
 
+	public String getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
-		return "Team [id=" + id + ", username=" + username + ", password=" + password + ", emailId=" + emailId + "]";
+		return "Team [id=" + id + ", username=" + username + ", password=" + password + ", emailId=" + emailId
+				+ ", roles=" + roles + "]";
 	}
 
 }

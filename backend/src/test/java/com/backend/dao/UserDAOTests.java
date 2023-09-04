@@ -24,8 +24,8 @@ public class UserDAOTests {
     @Test
     public void findAllUsersTest() {
         List<User> dbList = userDAO.findAll();
-        User userA = new User("aUser", "aPassword", "aUser@user.com");
-        User userB = new User("bUser", "bPassword", "bUser@user.com");
+        User userA = new User("aUser", "aPassword", "aUser@user.com", "user");
+        User userB = new User("bUser", "bPassword", "bUser@user.com", "user");
         userA = userDAO.save(userA);
         userB = userDAO.save(userB);
         List<User> dbList2 = userDAO.findAll();
@@ -36,7 +36,7 @@ public class UserDAOTests {
 
     @Test
     public void saveUserTest() {
-        User user = new User("aUser", "aPassword", "aUser@user.com");
+        User user = new User("aUser", "aPassword", "aUser@user.com", "user");
         user = userDAO.save(user);
         assertTrue((user.getId()).longValue() > 0);
         userDAO.delete(user);
@@ -44,7 +44,7 @@ public class UserDAOTests {
 
     @Test
     public void getByIdUserTest() {
-        User user = new User("aUser", "aPassword", "aUser@user.com");
+        User user = new User("aUser", "aPassword", "aUser@user.com", "user");
         User expected = userDAO.save(user);
         User actual = userDAO.getById((long) expected.getId());
         assertNotNull(actual);
@@ -53,7 +53,7 @@ public class UserDAOTests {
 
     @Test
     public void getByIdUsernameUserTest() {
-        User user = new User("aUser", "aPassword", "aUser@user.com");
+        User user = new User("aUser", "aPassword", "aUser@user.com", "user");
         User expected = userDAO.save(user);
         User actual = userDAO.getByUsername(expected.getUsername());
         assertNotNull(actual);
@@ -62,7 +62,7 @@ public class UserDAOTests {
 
     @Test
     public void deleteUserTest() {
-        User user = new User("aUser", "aPassword", "aUser@user.com");
+        User user = new User("aUser", "aPassword", "aUser@user.com", "user");
         User expected = userDAO.save(user);
         userDAO.delete(expected);
         assertFalse(userDAO.findById(expected.getId()).isPresent());

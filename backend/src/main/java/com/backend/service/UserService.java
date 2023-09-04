@@ -3,6 +3,7 @@ package com.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.backend.dao.UserDAO;
@@ -22,6 +23,10 @@ public class UserService {
         if (dbValue != null || user.getUsername() == null || user.getPassword() == null || user.getEmailId() == null) {
             return false;
         }
+        if (user.getRoles() == null) {
+            user.setRoles("ROLE_user");
+        }
+        user.setPassword(this.getEncodedString(user.getPassword()));
         userDAO.save(user);
         return true;
     }
@@ -30,15 +35,12 @@ public class UserService {
         return userDAO.findAll();
     }
 
-    public boolean isValidUser(User user) {
-        if (user == null || user.getUsername() == null || user.getPassword() == null) {
-            return false;
-        }
-        User dbValue = userDAO.getByUsername(user.getUsername());
-        return dbValue != null && dbValue.getPassword().equals(user.getPassword());
-    }
-
     public User getByUsername(String username) {
         return this.userDAO.getByUsername(username);
+    }
+
+    private String getEncodedString(String input) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        return encoder.encode(input);
     }
 }
