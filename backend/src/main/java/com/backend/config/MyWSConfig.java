@@ -18,14 +18,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class WebSecurityConfig {
+public class MyWSConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
         return new MyWSUserDetailsService();
     }
 
-    @Bean
+    // @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder) {
         UserDetails admin = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin"))

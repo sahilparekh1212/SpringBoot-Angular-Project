@@ -8,8 +8,7 @@ Technologies: Angular, SpringBoot, MySQL
 	<li>Go to: <strong>SpringBoot-Angular-Project/backend/</strong></li>
 	<p>Run code:
 		<ol>
-			<li><code style="user-select: all;">mvn clean install -DskipTests=true</code></li>
-			<li><code style="user-select: all;">mvn clean spring-boot:run</code></li>
+			<li><code style="user-select: all;">mvn clean install spring-boot:run</code></li>
 		</ol>
 		</p>
 		<li>Access Database: <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a></li>
