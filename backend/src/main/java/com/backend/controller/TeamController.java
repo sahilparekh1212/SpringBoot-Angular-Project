@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class TeamController {
 	@Autowired
 	private TeamService teamService;
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getTeams", produces = { "application/json" })
 	public ResponseEntity<List<Team>> getTeams() {
@@ -39,6 +41,7 @@ public class TeamController {
 		return ResponseEntity.ok(teams);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getTeams/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> getTeams(@PathVariable("id") Long id) {
@@ -51,6 +54,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "addTeam", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
@@ -63,6 +67,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping(value = "updateTeam/{id}", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Optional<Team>> updateTeam(@RequestBody Team team) {
@@ -79,6 +84,7 @@ public class TeamController {
 		return ResponseEntity.ok(response);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(value = "deleteTeam/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable("id") Long id) {
@@ -94,6 +100,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(value = "keepFirst/{x}", produces = { "application/json" })
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable("x") Long x) {
