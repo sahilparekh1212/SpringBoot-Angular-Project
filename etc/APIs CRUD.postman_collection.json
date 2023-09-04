@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"user\"\r\n}",
+					"raw": "{\r\n    \"username\":\"combo\",\r\n    \"password\":\"combo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,20 +43,13 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
 				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjkzODU5OTg4LCJleHAiOjE2OTM4NjI2ODh9.JotZH2BaRSfEe2ueyEFtyehxhdCs92sOfR68deqLRow",
-						"type": "default",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://localhost:8080/api/v1/getTeams",
 					"protocol": "http",
@@ -81,7 +74,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -113,7 +106,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -153,7 +146,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -194,7 +187,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -226,7 +219,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -261,7 +254,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -301,7 +294,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -341,7 +334,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]
@@ -381,7 +374,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg2NzQ4OSwiZXhwIjoxNjk1MTgxNDg5fQ.i950e-SSRslPWgjqtOPWfrxSFJo3sLy2OLiW07b6RtU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb21ibyIsImlhdCI6MTY5Mzg3MTA0OCwiZXhwIjoxNjk1MzQyMjc3fQ.Nv_RDi8IyFy6ccqjJyRv0chXXMAZRzij4CnhCacAiTo",
 							"type": "string"
 						}
 					]

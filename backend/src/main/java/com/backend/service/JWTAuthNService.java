@@ -23,7 +23,7 @@ public class JWTAuthNService {
                 .setClaims(new HashMap<>())
                 .setSubject(username)
                 .setIssuedAt(new Date(currMilisecond))
-                .setExpiration(new Date(currMilisecond + 1000 * 60 * 60 * 365))
+                .setExpiration(new Date(currMilisecond + 1000 * 60 * 60 * 24 * 365))
                 .signWith(getKey(), SignatureAlgorithm.HS256).compact();
     }
 
