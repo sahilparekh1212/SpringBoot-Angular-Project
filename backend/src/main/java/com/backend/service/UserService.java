@@ -13,7 +13,7 @@ import com.backend.model.User;
 public class UserService {
 
     @Autowired
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
     public boolean saveUser(User user) {
         if (user == null) {

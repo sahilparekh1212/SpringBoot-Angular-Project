@@ -1,4 +1,4 @@
-package com.backend.config;
+package com.backend.dto;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.backend.model.User;
 
-public class MyWSUserDetailsMapper implements UserDetails {
+public class MyWSUserDetailsDTO implements UserDetails {
 
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public MyWSUserDetailsMapper(User user) {
+    public MyWSUserDetailsDTO(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.authorities = List.of((user.getRoles().split(",")))
