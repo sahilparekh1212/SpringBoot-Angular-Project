@@ -4,8 +4,10 @@ import { AddTeamComponent } from './add-team/add-team.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateTeamComponent } from './update-team/update-team.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'addTeam', component: AddTeamComponent },
   { path: 'updateTeam/:id', component: UpdateTeamComponent },

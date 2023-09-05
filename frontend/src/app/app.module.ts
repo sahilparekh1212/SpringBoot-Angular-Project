@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateTeamComponent } from './update-team/update-team.component';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './services/loginService/login.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { UpdateTeamComponent } from './update-team/update-team.component';
     HomeComponent,
     AddTeamComponent,
     UpdateTeamComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { UpdateTeamComponent } from './update-team/update-team.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [TeamService],
+  providers: [LoginService, TeamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
