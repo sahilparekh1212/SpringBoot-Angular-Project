@@ -29,7 +29,6 @@ public class TeamController {
 	private TeamService teamService;
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getTeams", produces = { "application/json" })
 	public ResponseEntity<List<Team>> getTeams() {
 		List<Team> teams = new ArrayList<>();
@@ -42,7 +41,6 @@ public class TeamController {
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getTeams/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> getTeams(@PathVariable("id") Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
@@ -55,7 +53,6 @@ public class TeamController {
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "addTeam", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Team> addTeam(@RequestBody TeamWithoutId teamWithoutId) {
 		Team team = new Team(teamWithoutId.getTeamName(), teamWithoutId.getGameName(), teamWithoutId.getemailId());
@@ -68,7 +65,6 @@ public class TeamController {
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping(value = "updateTeam/{id}", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Optional<Team>> updateTeam(@RequestBody Team team) {
 		Optional<Team> response = Optional.ofNullable(new Team());
@@ -85,7 +81,6 @@ public class TeamController {
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(value = "deleteTeam/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> deleteTeam(@PathVariable("id") Long id) {
 		Optional<Team> team = Optional.ofNullable(new Team());
@@ -101,7 +96,6 @@ public class TeamController {
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_user')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(value = "keepFirst/{x}", produces = { "application/json" })
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable("x") Long x) {
 		List<Team> deletedTeams = new ArrayList<>();

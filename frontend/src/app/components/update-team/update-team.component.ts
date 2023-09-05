@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { TeamService } from '../services/team.service';
-import { Team } from '../utility/class/team/team';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { TeamService } from "src/app/services/teamService/team.service";
+import { Team } from "src/app/utility/class/team/team";
 
 @Component({
   selector: 'app-update-team',
