@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResponseObj } from 'src/app/utility/class/ResponseObj/ResponseObj';
 import { TeamWithoutId } from 'src/app/utility/class/team-without-id/team-without-id';
 import { Team } from 'src/app/utility/class/team/team';
 import { User } from 'src/app/utility/class/user/user';
@@ -14,9 +15,9 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(user: User): Observable<String> {
+  login(user: User): Observable<ResponseObj> {
     const URL = this.baseURL + 'login';
-    return this.httpClient.post<String>(URL, user);
+    return this.httpClient.post<ResponseObj>(URL, user);
   }
 
 }

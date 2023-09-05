@@ -47,7 +47,7 @@ export class TeamService {
   getAuthRToken(): object {
     return {
       headers: {
-        "Authorization": "Bearer " + sessionStorage.getItem("Authorization")
+        "Authorization": "Bearer " + localStorage.getItem("Authorization")
       }
     }
   }

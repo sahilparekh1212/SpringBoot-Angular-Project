@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.dto.JWTAuthNRequestDTO;
+import com.backend.dto.ResponseObj;
 import com.backend.service.JWTAuthNService;
 
 @RestController
@@ -27,7 +28,7 @@ public class JWTAuthNController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping(value = "login", produces = { "application/json" }, consumes = { "application/json" })
-    public ResponseEntity<String> getAuthorizationToken(@RequestBody JWTAuthNRequestDTO req) {
+    public ResponseEntity<ResponseObj> getAuthorizationToken(@RequestBody JWTAuthNRequestDTO req) {
 
         String token = null;
 
@@ -40,8 +41,8 @@ public class JWTAuthNController {
                 throw new UsernameNotFoundException("user not found");
             }
         }
-
-        return ResponseEntity.ok(token);
+        ResponseObj res = new ResponseObj(token);
+        return ResponseEntity.ok(res);
     }
 
 }
