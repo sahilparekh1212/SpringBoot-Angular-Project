@@ -1,5 +1,7 @@
 package com.backend.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.backend.filter.JWTAuthRFilter;
 import com.backend.service.MyWSUserDetailsService;
@@ -60,7 +65,8 @@ public class MyWSConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         // Disabled CSRF to use postman
         return httpSecurity.csrf().disable()
-                .authorizeHttpRequests().antMatchers("/api/v1/login", "/api/v1/addUser").permitAll()
+                .cors()
+                .and().authorizeHttpRequests().antMatchers("/api/v1/login", "/api/v1/addUser").permitAll()
                 .and().authorizeHttpRequests().antMatchers("/api/v1/**").authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authenticationProvider(authenticationProvider())
@@ -79,5 +85,16 @@ public class MyWSConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authNConfig) throws Exception {
         return authNConfig.getAuthenticationManager();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

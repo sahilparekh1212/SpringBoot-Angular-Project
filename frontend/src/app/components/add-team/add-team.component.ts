@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { TeamService } from '../services/team.service';
-import { TeamWithoutId } from '../utility/class/team-without-id/team-without-id';
-import { Team } from '../utility/class/team/team';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { TeamService } from "src/app/services/teamService/team.service";
+import { TeamWithoutId } from "src/app/utility/class/team-without-id/team-without-id";
+import { Team } from "src/app/utility/class/team/team";
 
 @Component({
   selector: 'app-add-team',
@@ -29,11 +29,11 @@ export class AddTeamComponent implements OnInit {
     this.addTeamForm?.valueChanges?.subscribe((res) => {
       //dynamically assigning toggleSimilarTeamDetailsError to false
       if (this.similarTeamDetails) {
-        if((res.teamName.trim() != this.similarTeamDetails.teamName || res.gameName.trim() != this.similarTeamDetails.gameName)){
-          this.toggleSimilarTeamDetailsError(false,this.showSimilarTeamEmailIdError);
-        } 
-        if(res.emailId.trim() != this.similarTeamDetails.emailId) {
-          this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError,false);
+        if ((res.teamName.trim() != this.similarTeamDetails.teamName || res.gameName.trim() != this.similarTeamDetails.gameName)) {
+          this.toggleSimilarTeamDetailsError(false, this.showSimilarTeamEmailIdError);
+        }
+        if (res.emailId.trim() != this.similarTeamDetails.emailId) {
+          this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError, false);
         }
       }
     });
@@ -60,7 +60,7 @@ export class AddTeamComponent implements OnInit {
 
   addTeam(teamDetails: TeamWithoutId) {
     if (this.isTeamNameAndGameUnique(this.teams, teamDetails)) {
-      if(this.isTeamEmailIdUnique(this.teams, teamDetails)){
+      if (this.isTeamEmailIdUnique(this.teams, teamDetails)) {
         this.teamService.addTeam(teamDetails).subscribe((res) => {
           if (res) {
             this.id = res.id;
@@ -74,12 +74,12 @@ export class AddTeamComponent implements OnInit {
           (error) => {
             console.log('Error Occured -> addTeam() -> error=', error);
           });
-      } else{
-        this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError,true,teamDetails);
+      } else {
+        this.toggleSimilarTeamDetailsError(this.showSimilarTeamNameAndGameNameError, true, teamDetails);
       }
 
     } else {
-      this.toggleSimilarTeamDetailsError(true,null,teamDetails);
+      this.toggleSimilarTeamDetailsError(true, null, teamDetails);
     }
   }
 
@@ -168,17 +168,17 @@ export class AddTeamComponent implements OnInit {
     return result;
   }
 
-  toggleSimilarTeamDetailsError(showSimilarTeamNameAndGameNameError: boolean, showSimilarTeamEmailIdError?:any, similarTeamDetails?: any) {
+  toggleSimilarTeamDetailsError(showSimilarTeamNameAndGameNameError: boolean, showSimilarTeamEmailIdError?: any, similarTeamDetails?: any) {
     this.similarTeamDetails = similarTeamDetails;
     this.showSimilarTeamNameAndGameNameError = showSimilarTeamNameAndGameNameError;
 
-    if(showSimilarTeamEmailIdError===(true || false)){
+    if (showSimilarTeamEmailIdError === (true || false)) {
       this.showSimilarTeamEmailIdError = showSimilarTeamEmailIdError;
     }
 
   }
 
-  isTeamEmailIdUnique(teams: Team[], input: TeamWithoutId){
+  isTeamEmailIdUnique(teams: Team[], input: TeamWithoutId) {
     let result: boolean = false;
     if (teams) {
       let teamsCopy: Team[] = teams;

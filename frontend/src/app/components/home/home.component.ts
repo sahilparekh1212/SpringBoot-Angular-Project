@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TeamService } from '../services/team.service';
-import { Team } from '../utility/class/team/team';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { TeamService } from "src/app/services/teamService/team.service";
+import { Team } from "src/app/utility/class/team/team";
 
 @Component({
   selector: 'app-home',

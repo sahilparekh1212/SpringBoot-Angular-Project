@@ -11,13 +11,12 @@ import { User } from 'src/app/utility/class/user/user';
 export class LoginService {
 
   baseURL = 'http://localhost:8080/api/v1/';
-  public token: string = "";
 
   constructor(private httpClient: HttpClient) { }
 
-  login(user: User): Observable<string> {
+  login(user: User): Observable<String> {
     const URL = this.baseURL + 'login';
-    return this.httpClient.post<string>(URL, user);
+    return this.httpClient.post<String>(URL, user);
   }
 
 }

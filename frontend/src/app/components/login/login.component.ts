@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { User } from '../utility/class/user/user';
-import { NgForm } from '@angular/forms';
-import { LoginService } from '../services/loginService/login.service';
+import { Component, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { LoginService } from "src/app/services/loginService/login.service";
+import { TeamService } from "src/app/services/teamService/team.service";
+import { User } from "src/app/utility/class/user/user";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
 
   @ViewChild('loginUserForm', { static: true }) loginUserForm: NgForm | undefined;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private teamService: TeamService) { }
 
   ngOnInit(): void {
 
@@ -24,9 +25,10 @@ export class LoginComponent {
   onSubmit(userDetails: User) {
     if (userDetails.username && userDetails.password) {
 
-      this.loginService.login(userDetails).subscribe((res: string | undefined) => {
+      this.loginService.login(userDetails).subscribe((res: String) => {
+        console.log("res", res);
         if (res) {
-          this.loginService.token = res;
+          sessionStorage.setItem("Authorization", res.toString());
         } else {
           this.showLoginError();
           console.log('Something went wrong -> login() -> res=', res);

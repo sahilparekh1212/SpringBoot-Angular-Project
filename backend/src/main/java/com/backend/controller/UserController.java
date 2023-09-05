@@ -24,7 +24,6 @@ public class UserController {
 	private UserService userService;
 
 	@PreAuthorize("hasAuthority('ROLE_admin')")
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "getUsers", produces = { "application/json" })
 	public ResponseEntity<List<User>> getUsers() {
 		List<User> users = new ArrayList<>();
@@ -36,7 +35,6 @@ public class UserController {
 		return ResponseEntity.ok(users);
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "addUser", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
 		Boolean res = false;

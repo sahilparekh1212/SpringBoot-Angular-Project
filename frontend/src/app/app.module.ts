@@ -4,12 +4,12 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TeamService } from './services/team.service';
+import { TeamService } from './services/teamService/team.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddTeamComponent } from './add-team/add-team.component';
-import { HomeComponent } from './home/home.component';
-import { UpdateTeamComponent } from './update-team/update-team.component';
-import { LoginComponent } from './login/login.component';
+import { AddTeamComponent } from './components/add-team/add-team.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { UpdateTeamComponent } from './components/update-team/update-team.component';
 import { LoginService } from './services/loginService/login.service';
 
 @NgModule({
