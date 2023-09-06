@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/services/authService/auth.service";
 import { TeamService } from "src/app/services/teamService/team.service";
 import { Team } from "src/app/utility/class/team/team";
 
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   teams: Team[] = [];
   showDiv = false;
 
-  constructor(private teamService: TeamService, private router: Router) { }
+  constructor(private teamService: TeamService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getTeams();

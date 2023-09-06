@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "src/app/services/authService/auth.service";
 import { TeamService } from "src/app/services/teamService/team.service";
 import { Team } from "src/app/utility/class/team/team";
 
@@ -20,7 +21,7 @@ export class UpdateTeamComponent implements OnInit {
     emailId: new FormControl(this.team.emailId, Validators.compose([Validators.required]))
   });
 
-  constructor(private teamService: TeamService, private activatedRoute: ActivatedRoute) { }
+  constructor(private teamService: TeamService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getTeam(this.activatedRoute.snapshot.params['id']);

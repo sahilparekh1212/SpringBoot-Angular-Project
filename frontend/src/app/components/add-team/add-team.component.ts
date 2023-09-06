@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { AuthService } from "src/app/services/authService/auth.service";
 import { TeamService } from "src/app/services/teamService/team.service";
 import { TeamWithoutId } from "src/app/utility/class/team-without-id/team-without-id";
 import { Team } from "src/app/utility/class/team/team";
@@ -22,7 +23,7 @@ export class AddTeamComponent implements OnInit {
 
   @ViewChild('addTeamForm', { static: true }) addTeamForm: NgForm | undefined;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.setTeamDetails();
