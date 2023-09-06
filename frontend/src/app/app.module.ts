@@ -10,7 +10,7 @@ import { AddTeamComponent } from './components/add-team/add-team.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateTeamComponent } from './components/update-team/update-team.component';
-import { LoginService } from './services/loginService/login.service';
+import { AuthService } from './services/authService/auth.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { LoginService } from './services/loginService/login.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService, TeamService],
+  providers: [AuthService, TeamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

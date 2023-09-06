@@ -8,15 +8,15 @@
 
     <div>
         <label class="m-2" for="username">username</label>
-        <input class="col-6 bg-dark text-light" type="text" name="username" [(ngModel)]="user.username" required
-            #username="ngModel">
+        <input class="col-6 bg-dark text-light" type="text" name="username" [(ngModel)]="user.username"
+            autocomplete="username" required #username="ngModel">
         <span [hidden]="username.valid" class="small text-danger p-2">Mandatory field</span>
     </div>
 
     <div>
         <label class="m-2" for="password">password</label>
-        <input class="col-6 bg-dark text-light" type="password" name="password" [(ngModel)]="user.password" required
-            #password="ngModel">
+        <input class="col-6 bg-dark text-light" type="password" name="password" [(ngModel)]="user.password"
+            autocomplete="off" required #password="ngModel">
         <span [hidden]="password.valid" class="small text-danger p-2">Mandatory field</span>
     </div>
 

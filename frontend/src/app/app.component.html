@@ -5,8 +5,9 @@
                     ariaCurrentWhenActive="page">Home</a></li>
             <li class="nav-item"><a class="nav-link text-info" routerLink="/addTeam" routerLinkActive="active"
                     ariaCurrentWhenActive="page">Add Team</a></li>
-            <li class="nav-item"><a class="nav-link text-info" routerLink="/login" routerLinkActive="active"
-                    ariaCurrentWhenActive="page">Login</a></li>
+            <li class="nav-item"><a class="nav-link text-info" [routerLink]="userActionURL" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">{{userActionText}}</a>
+            </li>
         </ul>
     </nav>
     <div class="my-4 mx-2">
