@@ -31,6 +31,7 @@ Technologies: Angular, SpringBoot, MySQL
 <ol>
 	<li>Backend: Add relevant response code</li>
 	<li>Backend: Add test cases for remaining APIs and Controllers</li>
+	<li>UI: Implement Refresh Token :e.g. in last 5 min of 30 min session</li>
 </ol>
 </br>
 <hr>
