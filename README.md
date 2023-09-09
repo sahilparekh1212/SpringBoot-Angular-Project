@@ -11,8 +11,8 @@ Technologies: Angular, SpringBoot, MySQL
 			<li><code style="user-select: all;">mvn clean install spring-boot:run</code></li>
 		</ol>
 		</p>
-		<li>Access Database: <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a></li>
-		<li>Access ER Diagram & Postman Collection: <a href="https://github.com/sahilparekh1212/SpringBoot-Angular-Project/tree/main/etc" target="_blank">/postmanCollection</a></li>
+		<li>Access Database: <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a> with JDBC URL as <code>jdbc:h2:mem:teams_management_system</code>, <code>sa</code> as the username and <code> </code> (space) as the password</li>
+		<li>Access ER Diagram & Postman Collection: <a href="https://github.com/sahilparekh1212/SpringBoot-Angular-Project/tree/main/etc" target="_blank">/etc</a></li>
 </ul>
 </br>
 <hr>
@@ -22,6 +22,7 @@ Technologies: Angular, SpringBoot, MySQL
 	<br>Run code:
 		<ol>
 			<li><code style="user-select: all;">npm start</code></li>
+			<li><code>Login to <a>http://localhost:4200</a> using username of user/admin/combo with password same as the username.</code></li>
 		</ol>
 </ul>
 </br>
