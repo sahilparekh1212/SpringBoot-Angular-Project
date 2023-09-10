@@ -95,7 +95,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
-	@PreAuthorize("hasAuthority('ROLE_user')")
+	@PreAuthorize("hasRole('ROLE_user')")
 	@DeleteMapping(value = "keepFirst/{x}", produces = { "application/json" })
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable("x") Long x) {
 		List<Team> deletedTeams = new ArrayList<>();

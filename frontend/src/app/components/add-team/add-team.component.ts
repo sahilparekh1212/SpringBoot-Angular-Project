@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "src/app/services/authService/auth.service";
+import { EmailService } from "src/app/services/emailService/email.service";
 import { TeamService } from "src/app/services/teamService/team.service";
+import { EmailInfo } from "src/app/utility/class/emailInfo/emailInfo";
 import { TeamWithoutId } from "src/app/utility/class/team-without-id/team-without-id";
 import { Team } from "src/app/utility/class/team/team";
 
@@ -13,17 +15,20 @@ import { Team } from "src/app/utility/class/team/team";
 export class AddTeamComponent implements OnInit {
 
   teamDetails: TeamWithoutId = new TeamWithoutId();
-  showMessage: boolean = false;
+  showIsTeamAddedMessage: boolean = false;
   isTeamAdded: boolean = false;
   id: number | undefined;
   teams: Team[] = [];
   similarTeamDetails: TeamWithoutId | undefined;
   showSimilarTeamNameAndGameNameError: boolean = false;
   showSimilarTeamEmailIdError: boolean = false;
+  showEmailStatusMessagePrompt: boolean = false;
+  isEmailSentSuccessfully: boolean = false;
+  emailStatusMessage: string = "";
 
   @ViewChild('addTeamForm', { static: true }) addTeamForm: NgForm | undefined;
 
-  constructor(private teamService: TeamService, private authService: AuthService) { }
+  constructor(private teamService: TeamService, private authService: AuthService, private emailService: EmailService) { }
 
   ngOnInit(): void {
     this.setTeamDetails();
@@ -67,10 +72,11 @@ export class AddTeamComponent implements OnInit {
             this.id = res.id;
             this.isTeamAdded = true;
             this.setTeamDetails();
+            this.sendEmailToTeam();
           } else {
             console.log('Something went wrong -> addTeam() -> res=', res);
           }
-          this.showMessage = true;
+          this.showIsTeamAddedMessage = true;
         },
           (error) => {
             console.log('Error Occured -> addTeam() -> error=', error);
@@ -191,6 +197,25 @@ export class AddTeamComponent implements OnInit {
 
     }
     return result;
+  }
+
+  sendEmailToTeam() {
+    this.emailService.sendEmail(new EmailInfo(this.teamDetails.emailId, "Dear " + this.teamDetails.teamName, "Greetings...! You are enrolled successfully.")).subscribe((res) => {
+      this.showEmailStatusMessagePromptFunc(res);
+    }, (error) => {
+      console.log("Email could not be sent", error);
+      this.showEmailStatusMessagePromptFunc(false);
+    })
+  }
+
+  showEmailStatusMessagePromptFunc(status: any) {
+    if (status && status.toString() == "true") {
+      this.isEmailSentSuccessfully = true;
+    } else {
+      this.isEmailSentSuccessfully = false;
+    }
+    this.showEmailStatusMessagePrompt = true;
+    this.emailStatusMessage = this.isEmailSentSuccessfully ? "Email was sent successfully" : "Email could not be sent! Something went wrong!";
   }
 
 }

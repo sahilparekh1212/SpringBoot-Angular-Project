@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateTeamComponent } from './components/update-team/update-team.component';
 import { AuthService } from './services/authService/auth.service';
+import { EmailService } from './services/emailService/email.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AuthService } from './services/authService/auth.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, TeamService],
+  providers: [AuthService, TeamService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
