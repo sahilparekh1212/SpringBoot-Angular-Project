@@ -1,4 +1,4 @@
-<div *ngIf="showMessage">
+<div *ngIf="showIsTeamAddedMessage">
 
     <ng-container *ngIf="isTeamAdded; else errorTemplate"
         class="d-flex row justify-content-around text-success border border-success">
@@ -6,7 +6,7 @@
         <div *ngIf="id" class="d-flex row justify-content-around text-success border border-success">
             <div class="col-11">Added Team Successfully. Team id is {{id}}.</div>
             <div class="col-1"><button class="bg-dark text-success border-0"
-                    (click)="showMessage = !showMessage">&times;</button></div>
+                    (click)="showIsTeamAddedMessage = !showIsTeamAddedMessage">&times;</button></div>
         </div>
     </ng-container>
 
@@ -14,20 +14,39 @@
         <div class="d-flex row justify-content-around text-danger border border-danger">
             <div class="col-11">Something went wrong!</div>
             <div class="col-1"><button class="bg-dark text-danger border-0"
-                    (click)="showMessage = !showMessage">&times;</button></div>
+                    (click)="showIsTeamAddedMessage = !showIsTeamAddedMessage">&times;</button></div>
         </div>
     </ng-template>
 
 </div>
 
-<ng-container>
-    <div *ngIf="showSimilarTeamNameAndGameNameError && similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
-        <div class="col-11">Team with name- <em class="text-info">{{similarTeamDetails.teamName}}</em> already exists in game- <em class="text-info">{{similarTeamDetails.gameName}}</em>.</div>
-        <div class="col-1"><button class="bg-dark text-danger border-0"
-                (click)="showSimilarTeamNameAndGameNameError = !showSimilarTeamNameAndGameNameError">&times;</button></div>
+<div *ngIf="showEmailStatusMessagePrompt">
+
+    <div class="d-flex row justify-content-around text-success border border-success">
+        <div class="d-flex row justify-content-around border"
+            [ngClass]="isEmailSentSuccessfully ? 'text-success border-success' : 'text-danger border-danger'">
+            <div class="col-11" [innerText]="emailStatusMessage"></div>
+            <div class="col-1"><button class="bg-dark border-0"
+                    [ngClass]="isEmailSentSuccessfully ? 'text-success' : 'text-danger'"
+                    (click)="showEmailStatusMessagePrompt = !showEmailStatusMessagePrompt">&times;</button></div>
+        </div>
     </div>
-    <div *ngIf="showSimilarTeamEmailIdError && similarTeamDetails" class="d-flex row justify-content-around text-danger border border-danger">
-        <div class="col-11">Team with emailId- <em *ngIf="similarTeamDetails && similarTeamDetails.emailId" class="text-info">{{similarTeamDetails.emailId}}</em> already exists</div>
+
+</div>
+
+<ng-container>
+    <div *ngIf="showSimilarTeamNameAndGameNameError && similarTeamDetails"
+        class="d-flex row justify-content-around text-danger border border-danger">
+        <div class="col-11">Team with name- <em class="text-info">{{similarTeamDetails.teamName}}</em> already exists in
+            game- <em class="text-info">{{similarTeamDetails.gameName}}</em>.</div>
+        <div class="col-1"><button class="bg-dark text-danger border-0"
+                (click)="showSimilarTeamNameAndGameNameError = !showSimilarTeamNameAndGameNameError">&times;</button>
+        </div>
+    </div>
+    <div *ngIf="showSimilarTeamEmailIdError && similarTeamDetails"
+        class="d-flex row justify-content-around text-danger border border-danger">
+        <div class="col-11">Team with emailId- <em *ngIf="similarTeamDetails && similarTeamDetails.emailId"
+                class="text-info">{{similarTeamDetails.emailId}}</em> already exists</div>
         <div class="col-1"><button class="bg-dark text-danger border-0"
                 (click)="showSimilarTeamEmailIdError = !showSimilarTeamEmailIdError">&times;</button></div>
     </div>
