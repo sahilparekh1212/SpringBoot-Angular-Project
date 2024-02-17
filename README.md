@@ -1,6 +1,6 @@
 <hr>
 <h1>SpringBoot, Angular fullstack-project</h1>
-Technologies: Angular, SpringBoot, MySQL
+Tech: Angular, SpringBoot
 </br>
 <hr>
 <h3>Guide to run SpringBoot App:</h3>
