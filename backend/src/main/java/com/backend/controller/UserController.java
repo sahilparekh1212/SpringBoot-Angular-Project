@@ -1,6 +1,5 @@
 package com.backend.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,29 +28,12 @@ public class UserController {
 	@PreAuthorize("hasAuthority('ROLE_admin')")
 	@GetMapping(value = "getUsers", produces = { "application/json" })
 	public ResponseEntity<List<User>> getUsers() {
-		final String LOGEER_PREFIX = "In getUsers:";
-		List<User> users = new ArrayList<>();
-		try {
-			users = userService.findAllUsers();
-		} catch (Exception e) {
-			logger.error("{} Error occured: message={}, stackTrace={}", LOGEER_PREFIX, e.getMessage(),
-					e.getStackTrace());
-		}
-		return ResponseEntity.ok(users);
+		return ResponseEntity.ok(userService.findAllUsers());
 	}
 
 	@PostMapping(value = "addUser", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
-		final String LOGEER_PREFIX = "In addUser:";
-		Boolean res = false;
-		try {
-			res = userService.saveUser(user);
-		} catch (Exception e) {
-			logger.error("{} Error occured for username={} : message={}, stackTrace={}", LOGEER_PREFIX,
-					user.getUsername(), e.getMessage(),
-					e.getStackTrace());
-		}
-		return ResponseEntity.ok(res);
+		return ResponseEntity.ok(userService.saveUser(user));
 	}
 
 }
