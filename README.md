@@ -8,10 +8,10 @@ Tech: Angular, SpringBoot
 	<li>Go to: <strong>SpringBoot-Angular-Project/backend/</strong></li>
 	<p>Run code:
 		<ol>
+			<li>Run "Queries to run before backend run.sql" in MySQL Workbench</li>
 			<li><code style="user-select: all;">mvn clean install spring-boot:run</code></li>
 		</ol>
 		</p>
-		<li>Access Database: <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a> with JDBC URL as <code>jdbc:h2:mem:teams_management_system</code>, <code>sa</code> as the username and <code> </code> (space) as the password</li>
 		<li>Access ER Diagram & Postman Collection: <a href="https://github.com/sahilparekh1212/SpringBoot-Angular-Project/tree/main/etc" target="_blank">/etc</a></li>
 </ul>
 </br>
@@ -27,11 +27,5 @@ Tech: Angular, SpringBoot
 </ul>
 </br>
 <hr>
-<h3>Todo:</h3>
-<ol>
-	<li>Backend: Add relevant response code</li>
-	<li>Backend: Add test cases for remaining APIs and Controllers</li>
-	<li>UI: Implement Refresh Token :e.g. in last 5 min of 30 min session</li>
-</ol>
 </br>
 <hr>
