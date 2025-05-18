@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './services/authService/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from "src/app/services/authService/auth.service";
+import { Constants } from 'src/app/utility/Constants';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.isUserAuthnticated.subscribe((isAuthenticated) => {
-      this.userActionText = isAuthenticated && localStorage.getItem("Authorization") ? "Logout" : "Login";
+      this.userActionText = isAuthenticated && localStorage.getItem(Constants.AUTHORIZATION) ? "Logout" : "Login";
       this.setUserActionURL();
     });
   }

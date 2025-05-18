@@ -2,9 +2,9 @@ import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/authService/auth.service";
-import { TeamService } from "src/app/services/teamService/team.service";
 import { ResponseObj } from "src/app/utility/class/ResponseObj/ResponseObj";
 import { User } from "src/app/utility/class/user/user";
+import { Constants } from "src/app/utility/Constants";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.authService.getIsUserAuthnticated() || localStorage.getItem("Authorization")) {
+    if (this.authService.getIsUserAuthnticated() || localStorage.getItem(Constants.AUTHORIZATION)) {
       this.authService.logout();
     }
   }
@@ -31,7 +31,7 @@ export class LoginComponent {
 
       this.authService.login(userDetails).subscribe((res: ResponseObj) => {
         if (res?.data) {
-          localStorage.setItem("Authorization", res.data);
+          localStorage.setItem(Constants.AUTHORIZATION, res.data);
           this.router.navigateByUrl("/home");
           this.authService.setIsUserAuthnticated(true);
         } else {

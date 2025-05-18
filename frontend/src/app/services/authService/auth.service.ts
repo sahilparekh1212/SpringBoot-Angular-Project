@@ -1,28 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ResponseObj } from 'src/app/utility/class/ResponseObj/ResponseObj';
-import { TeamWithoutId } from 'src/app/utility/class/team-without-id/team-without-id';
-import { Team } from 'src/app/utility/class/team/team';
 import { User } from 'src/app/utility/class/user/user';
+import { Constants } from 'src/app/utility/Constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  baseURL = 'http://localhost:8080/api/v1/';
   isUserAuthnticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   login(user: User): Observable<ResponseObj> {
-    const URL = this.baseURL + 'login';
-    return this.httpClient.post<ResponseObj>(URL, user);
+    return this.httpClient.post<ResponseObj>(Constants.URL_LOGIN, user);
   }
 
   logout() {
-    localStorage.removeItem("Authorization");
+    localStorage.removeItem(Constants.AUTHORIZATION);
     this.router.navigateByUrl("/logout");
     this.setIsUserAuthnticated(false);
   }
@@ -40,7 +37,7 @@ export class AuthService {
   }
 
   navigateUserBasedOnAuthStatus() {
-    if (localStorage.getItem("Authorization") && this.getIsUserAuthnticated()) {
+    if (localStorage.getItem(Constants.AUTHORIZATION) && this.getIsUserAuthnticated()) {
       this.router.navigateByUrl("/logout");
       this.logout();
     } else {

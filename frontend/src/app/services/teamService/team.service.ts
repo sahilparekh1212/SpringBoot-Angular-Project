@@ -1,53 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Team } from '../../utility/class/team/team';
-import { TeamWithoutId } from '../../utility/class/team-without-id/team-without-id';
+import { Team } from 'src/app/utility/class/team/team';
+import { TeamWithoutId } from 'src/app/utility/class/team-without-id/team-without-id';
+import { Constants } from 'src/app/utility/Constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
 
-  baseURL = 'http://localhost:8080/api/v1/';
   teams: Team[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
   getTeams(): Observable<Team[]> {
-    const URL = this.baseURL + 'getTeams';
-    return this.httpClient.get<Team[]>(URL, this.getAuthRToken());
+    return this.httpClient.get<Team[]>(Constants.URL_GET_TEAMS, this.getAuthRToken());
   }
 
   getTeam(id: number): Observable<any> {
-    const URL = this.baseURL + 'getTeams/' + id;
+    const URL = Constants.URL_GET_TEAM + id;
     return this.httpClient.get<any>(URL, this.getAuthRToken());
   }
 
   addTeam(teamWithoutId: TeamWithoutId): Observable<Team> {
-    const URL = this.baseURL + 'addTeam';
-    return this.httpClient.post<Team>(URL, teamWithoutId, this.getAuthRToken());
+    return this.httpClient.post<Team>(Constants.URL_ADD_TEAM, teamWithoutId, this.getAuthRToken());
   }
 
   updateTeam(team: Team): Observable<Team> {
-    const URL = this.baseURL + 'updateTeam/' + team.id;
+    const URL = Constants.URL_UPDATE_TEAM + team.id;
     return this.httpClient.put<Team>(URL, team, this.getAuthRToken());
   }
 
   deleteTeam(id: number): Observable<Team> {
-    const URL = this.baseURL + 'deleteTeam/' + id;
+    const URL = Constants.URL_DELETE_TEAM + id;
     return this.httpClient.delete<Team>(URL, this.getAuthRToken());
   }
 
   keepFirst(teamsToBeKept: number): Observable<Team[]> {
-    const URL = this.baseURL + 'keepFirst/' + teamsToBeKept;
+    const URL = Constants.URL_KEEP_FIRST + teamsToBeKept;
     return this.httpClient.delete<Team[]>(URL, this.getAuthRToken());
   }
 
   getAuthRToken(): object {
     return {
       headers: {
-        "Authorization": "Bearer " + localStorage.getItem("Authorization")
+        "Authorization": Constants.AUTH_PREFIX + localStorage.getItem(Constants.AUTHORIZATION)
       }
     }
   }
