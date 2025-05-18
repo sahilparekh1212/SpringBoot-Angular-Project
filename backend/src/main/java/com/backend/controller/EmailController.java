@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.exceptions.SomeCustomException;
 import com.backend.service.EmailService;
+import com.backend.util.Constants;
 import com.backend.utility.EmailInfo;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = Constants.API_BASE_URL)
 public class EmailController {
 
     @Autowired

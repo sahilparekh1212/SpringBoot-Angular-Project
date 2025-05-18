@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.backend.util.Constants;
+
 @Entity
-@Table(name = "teams", schema = "teams_management_system")
+@Table(name = Constants.ENTITY_TEAMS, schema = Constants.SCHEMA)
 public class Team {
 
 	@Id

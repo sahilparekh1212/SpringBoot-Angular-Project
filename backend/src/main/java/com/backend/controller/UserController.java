@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.User;
 import com.backend.service.UserService;
+import com.backend.util.Constants;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = Constants.API_BASE_URL)
 public class UserController {
 
 	@Autowired

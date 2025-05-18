@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.exceptions.SomeCustomException;
 import com.backend.model.Team;
 import com.backend.service.TeamService;
+import com.backend.util.Constants;
 import com.backend.utility.TeamWithoutId;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = Constants.API_BASE_URL)
 public class TeamController {
 
 	@Autowired

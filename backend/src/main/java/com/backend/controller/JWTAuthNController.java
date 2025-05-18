@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.dto.JWTAuthNRequestDTO;
 import com.backend.dto.ResponseObj;
 import com.backend.service.JWTAuthNService;
+import com.backend.util.Constants;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = Constants.API_BASE_URL)
 public class JWTAuthNController {
 
     @Autowired
