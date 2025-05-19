@@ -21,7 +21,7 @@ export class UpdateTeamComponent implements OnInit {
     emailId: new FormControl(this.team.emailId, Validators.compose([Validators.required]))
   });
 
-  constructor(private teamService: TeamService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
+  constructor(private readonly teamService: TeamService, private readonly activatedRoute: ActivatedRoute, private readonly authService: AuthService) { }
 
   ngOnInit(): void {
     this.getTeam(this.activatedRoute.snapshot.params['id']);

@@ -12,7 +12,7 @@ export class TeamService {
 
   teams: Team[] = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private readonly httpClient: HttpClient) { }
 
   getTeams(): Observable<Team[]> {
     return this.httpClient.get<Team[]>(Constants.URL_GET_TEAMS, this.getAuthRToken());

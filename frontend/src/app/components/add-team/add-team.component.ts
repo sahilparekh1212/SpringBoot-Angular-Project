@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { AuthService } from "src/app/services/authService/auth.service";
 import { EmailService } from "src/app/services/emailService/email.service";
 import { TeamService } from "src/app/services/teamService/team.service";
 import { EmailInfo } from "src/app/utility/class/emailInfo/emailInfo";
@@ -28,7 +27,7 @@ export class AddTeamComponent implements OnInit {
 
   @ViewChild('addTeamForm', { static: true }) addTeamForm: NgForm | undefined;
 
-  constructor(private teamService: TeamService, private authService: AuthService, private emailService: EmailService) { }
+  constructor(private readonly teamService: TeamService, private readonly emailService: EmailService) { }
 
   ngOnInit(): void {
     this.setTeamDetails();
@@ -179,7 +178,7 @@ export class AddTeamComponent implements OnInit {
     this.similarTeamDetails = similarTeamDetails;
     this.showSimilarTeamNameAndGameNameError = showSimilarTeamNameAndGameNameError;
 
-    if (showSimilarTeamEmailIdError === (true || false)) {
+    if (typeof (showSimilarTeamEmailIdError) == typeof (true)) {
       this.showSimilarTeamEmailIdError = showSimilarTeamEmailIdError;
     }
 
