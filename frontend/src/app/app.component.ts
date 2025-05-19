@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   userActionText: string = "";
   userActionURL: string = "";
 
-  constructor(private authService: AuthService) {
+  constructor(private readonly authService: AuthService) {
 
   }
 

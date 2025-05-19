@@ -21,7 +21,7 @@ Tech: Angular, SpringBoot
 	<li>Go to: <strong>fullstack-project/frontend/</strong></li>
 	<br>Run code:
 		<ol>
-			<li><code style="user-select: all;">npm start</code></li>
+			<li>Run `ng s frontend` and `ng s micro-front-end` in different terminals</li>
 			<li><code>Login to <a>http://localhost:4200</a> using username of user/admin/combo with password same as the username.</code></li>
 		</ol>
 </ul>

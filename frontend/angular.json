@@ -37,7 +37,8 @@
               "src/styles.less",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -80,14 +81,22 @@
             },
             "development": {
               "browserTarget": "frontend:build:development"
+            },
+            "options": {
+              "browserTarget": "frontend:build"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200,
+            "publicHost": "http://localhost:4200"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "frontend:build",
+            "extraWebpackConfig": "webpack.config.js"
           }
         },
         "test": {
@@ -104,6 +113,111 @@
             ],
             "styles": [
               "src/styles.less"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "micro-front-end": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/micro-front-end",
+      "sourceRoot": "projects/micro-front-end/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/micro-front-end",
+            "index": "projects/micro-front-end/src/index.html",
+            "main": "projects/micro-front-end/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/micro-front-end/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/micro-front-end/src/favicon.ico",
+              "projects/micro-front-end/src/assets"
+            ],
+            "styles": [
+              "projects/micro-front-end/src/styles.less"
+            ],
+            "scripts": [],
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "micro-front-end:build:production"
+            },
+            "development": {
+              "browserTarget": "micro-front-end:build:development"
+            },
+            "options": {
+              "browserTarget": "micro-front-end:build"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201,
+            "publicHost": "http://localhost:4201"
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "micro-front-end:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/micro-front-end/tsconfig.spec.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/micro-front-end/src/favicon.ico",
+              "projects/micro-front-end/src/assets"
+            ],
+            "styles": [
+              "projects/micro-front-end/src/styles.less"
             ],
             "scripts": []
           }
