@@ -21,12 +21,15 @@ import com.backend.util.Constants;
 @RequestMapping(value = Constants.API_BASE_URL)
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
+
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
 	Logger logger = LogManager.getLogger(UserController.class);
 
-	@PreAuthorize("hasAuthority('ROLE_admin')")
+	@PreAuthorize("hasAuthority(Constants.AUTHORITY_ADMIN)")
 	@GetMapping(value = "getUsers", produces = { "application/json" })
 	public ResponseEntity<List<User>> getUsers() {
 		return ResponseEntity.ok(userService.findAllUsers());
