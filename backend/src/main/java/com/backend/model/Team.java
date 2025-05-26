@@ -36,6 +36,13 @@ public class Team {
 		this.emailId = emailId;
 	}
 
+	public Team(Long id2, String teamName2, String gameName2, String getemailId) {
+		this.id = id2;
+		this.teamName = teamName2;
+		this.gameName = gameName2;
+		this.emailId = getemailId;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -60,11 +67,11 @@ public class Team {
 		this.gameName = gameName;
 	}
 
-	public String getemailId() {
+	public String getEmailId() {
 		return emailId;
 	}
 
-	public void setemailId(String emailId) {
+	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
 
