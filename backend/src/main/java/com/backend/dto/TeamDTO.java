@@ -1,5 +1,6 @@
 package com.backend.dto;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TeamDTO {
 
-	@NotBlank(message = "Team ID cannot be blank")
+	@NotNull(message = "Team ID cannot be null")
 	private Long id;
 
 	@NotBlank(message = "Team name cannot be blank")

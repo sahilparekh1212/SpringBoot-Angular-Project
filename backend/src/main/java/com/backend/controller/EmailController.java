@@ -24,7 +24,7 @@ public class EmailController {
 
     Logger logger = LogManager.getLogger(EmailController.class);
 
-    @PreAuthorize("hasRole(Constants.AUTHORITY_ADMIN) or hasRole(Constants.AUTHORITY_USER)")
+    @PreAuthorize("hasRole(Constants.AUTHORITY_ADMIN) or hasRole('ROLE_user')")
     @PostMapping(value = "sendEmail", produces = { "application/json" }, consumes = { "application/json" })
     public ResponseEntity<Boolean> sendEmail(@RequestBody EmailInfo emailInfo) {
         final String LOGEER_PREFIX = "In sendEmail:";

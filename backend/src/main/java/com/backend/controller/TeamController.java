@@ -36,13 +36,13 @@ public class TeamController {
 
 	Logger logger = LogManager.getLogger(TeamController.class);
 
-	@PreAuthorize("hasAuthority(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@GetMapping(value = "getTeams", produces = { "application/json" })
 	public ResponseEntity<List<Team>> getTeams() {
 		return ResponseEntity.ok(teamService.findAllTeams());
 	}
 
-	@PreAuthorize("hasAuthority(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@GetMapping(value = "getTeams/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> getTeamsById(@PathVariable("id") Long id) {
 		final String LOGEER_PREFIX = "In getTeamsById:";
@@ -54,7 +54,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
-	@PreAuthorize("hasAuthority(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@PostMapping(value = "addTeam", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Team> addTeam(@RequestBody @Validated TeamWithoutId teamWithoutId) {
 		Team team = new Team(teamWithoutId.getTeamName(), teamWithoutId.getGameName(), teamWithoutId.getEmailId());
@@ -62,7 +62,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
-	@PreAuthorize("hasAuthority(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@PutMapping(value = "updateTeam/{id}", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<Optional<Team>> updateTeam(@RequestBody @Validated TeamDTO teamWithoutId, @PathVariable("id") Long id) {
 		final String LOGEER_PREFIX = "In updateTeam:";
@@ -75,7 +75,7 @@ public class TeamController {
 		}
 	}
 
-	@PreAuthorize("hasAuthority(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasAuthority('ROLE_user')")
 	@DeleteMapping(value = "deleteTeam/{id}", produces = { "application/json" })
 	public ResponseEntity<Optional<Team>> deleteTeamById(@PathVariable("id") Long id) {
 		final String LOGEER_PREFIX = "In deleteTeamById:";
@@ -87,7 +87,7 @@ public class TeamController {
 		return ResponseEntity.ok(team);
 	}
 
-	@PreAuthorize("hasRole(Constants.AUTHORITY_USER)")
+	@PreAuthorize("hasRole('ROLE_user')")
 	@DeleteMapping(value = "keepFirst/{x}", produces = { "application/json" })
 	public ResponseEntity<List<Team>> keepFirstX(@PathVariable("x") Long x) {
 		return ResponseEntity.ok(teamService.keepFirstX(x));
